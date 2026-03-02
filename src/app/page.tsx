@@ -4,11 +4,15 @@ import Brands from "@/components/Brands";
 import CardCarousel from "@/components/CardCarousel";
 import ClientTestimonials from "@/components/ClientTestimonials";
 import FAQSection from "@/components/FAQSection";
+import FeatureShowcase from "@/components/FeatureShowcase";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ImpactSection from "@/components/ImpactSection";
+import IndustriesSection from "@/components/IndustriesSection";
+import LogoCarousel from "@/components/LogoCarousel";
 import Navbar from "@/components/Navbar";
 import ProcessSection from "@/components/ProcessSection";
+import TestimonialSection from "@/components/TestimonialSection";
 import ValuesSection from "@/components/ValuesSection";
 
 export default function Home() {
@@ -18,12 +22,17 @@ export default function Home() {
       <HeroSection />
       <Brands />
       <CardCarousel />
-      <ProcessSection />
+      <FeatureShowcase />
+      <LogoCarousel />
+      <IndustriesSection />
+      <TestimonialSection />
+      <Footer />
+      {/* <ProcessSection />
       <AdvantageSection />
       <ImpactSection />
       <ClientTestimonials />
       <FAQSection />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }
