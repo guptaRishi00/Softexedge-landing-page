@@ -41,7 +41,7 @@ const SparkleIcon = ({ className }: any) => (
 );
 
 const IndustryPill = ({ name, color }: any) => (
-  <div className="flex items-center gap-2.5 px-5 py-2.5 bg-white border border-gray-100 rounded-full shadow-sm whitespace-nowrap mx-1.5 hover:border-blue-200 transition-colors duration-300">
+  <div className="flex items-center gap-2.5 px-5 py-2.5 bg-white border border-gray-100 rounded-full shadow-sm whitespace-nowrap mx-1.5 hover:border-blue-200 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-300">
     <SparkleIcon className={color} />
     <span className="text-gray-700 font-medium text-xs lg:text-sm">{name}</span>
   </div>
@@ -81,7 +81,7 @@ const IndustriesSection = () => {
   return (
     <section className="w-full py-20 lg:py-28 bg-[#FDFCF8] overflow-hidden flex flex-col items-center">
       <div className="text-center max-w-2xl px-6 lg:px-16 mb-14 space-y-4">
-        <div className="inline-block px-3 py-1 rounded-full border border-gray-200 bg-white text-[9px] font-bold uppercase tracking-widest text-gray-400 shadow-sm">
+        <div className="inline-block px-4 py-1.5 rounded-full border border-blue-200/50 bg-blue-50/30 text-[10px] font-bold uppercase tracking-widest text-[#3445E7]/70 shadow-sm">
           Serving 20+ Industries
         </div>
 
@@ -89,12 +89,12 @@ const IndustriesSection = () => {
           <span className={`${brandGradient} bg-clip-text text-transparent`}>
             Industries
           </span>{" "}
-          We Cater
+          We Build For
         </h2>
 
         <p className="text-gray-500 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-          From high-growth DTC brands to global enterprises, we help businesses
-          across all sectors turn visitors into customers.
+          From DTC brands to enterprise platforms, we build websites
+          that drive real business results across every sector.
         </p>
       </div>
 
@@ -105,9 +105,9 @@ const IndustriesSection = () => {
       </div>
 
       <button
-        className={`${brandGradient} hover:brightness-105 active:scale-95 text-white font-semibold px-8 py-3 rounded-full cursor-pointer transition-all duration-300 text-sm shadow-md shadow-blue-500/10`}
+        className={`${brandGradient} hover:brightness-110 active:scale-95 text-white font-semibold px-8 py-3 rounded-full cursor-pointer transition-all duration-300 text-sm shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30`}
       >
-        Start Your Project
+        Get a Free Quote
       </button>
     </section>
   );

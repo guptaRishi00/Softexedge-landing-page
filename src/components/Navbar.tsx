@@ -14,17 +14,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const buttonBase = "px-6 py-2.5 rounded-full text-[14px] font-medium border";
+  const buttonBase = "px-6 py-2.5 rounded-full text-[14px] font-medium border transition-all duration-300";
   const buttonIdle = "text-gray-700 border-gray-300 bg-transparent";
   const buttonHover =
     "hover:border-transparent hover:text-white hover:bg-gradient-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3]";
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "py-4 bg-white/90 backdrop-blur-md" : "py-6 bg-transparent"
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
+        ? "py-3 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+        : "py-6 bg-transparent"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 flex justify-between items-center">
+      <div className="max-w-346 mx-auto px-6 lg:px-16 flex justify-between items-center">
         {/* LEFT: Logo */}
         <Link href="/" className="transition-opacity ">
           <Image

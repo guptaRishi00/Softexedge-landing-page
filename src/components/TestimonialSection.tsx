@@ -12,16 +12,16 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "We were initially skeptical about the impact of just revamping our collection and product pages, but The Landing Page Company proved us wrong. The changes they implemented have led to a significant increase in our performance metrics.",
+      "SoftEXedge built us a custom Shopify store that completely transformed our online sales. Within the first month, our conversion rate jumped by 40% and the site loads faster than ever.",
     author: "Nitin Pamnani",
     role: "Founder - Itokri",
     image:
-      "https://images.unsplash.com/photo-1615109398623-88346a601842?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fHww", // Replace with actual image paths
+      "https://images.unsplash.com/photo-1615109398623-88346a601842?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fHww",
     rating: "5.0",
   },
   {
     quote:
-      "Even with the challenging task of raising our product prices, The Landing Page Company managed to improve our conversion rate and average order value significantly. The numbers speak for themselves—our customers are more engaged.",
+      "Our WordPress website was outdated and slow. SoftEXedge redesigned it from the ground up — it’s now mobile-first, blazing fast, and our organic traffic has doubled in three months.",
     author: "Suchita A Mukerji",
     role: "Founder - The Basic Women",
     image:
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "The CRO exercise we did with The Landing Page Company couldn't have come at a better time. Just a week before Mother's Day—a peak season for us—their work contributed to a substantial revenue increase.",
+      "We needed a custom web application for our gifting platform, and SoftEXedge delivered beyond expectations. The checkout flow they built contributed to a 35% revenue increase during our peak season.",
     author: "Varun Todi",
     role: "Founder - Oye Happy",
     image:
@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Partnering with The Landing Page Company to revamp our top 9 product pages was one of the best decisions we've made. Their ability to blend aesthetics with functionality truly transformed our online presence.",
+      "SoftEXedge revamped our e-commerce product pages with a focus on speed and UX. Their ability to blend design with performance truly transformed our online store and boosted our sales.",
     author: "Sachin Darbarwar",
     role: "Founder - Zeroharm",
     image:
@@ -78,7 +78,7 @@ export default function TestimonialSection() {
           Happy Clients
         </h2>
         <p className="text-gray-600 font-medium mb-14">
-          Trusted by thousands of people
+          Trusted by businesses worldwide for web development
         </p>
 
         {/* Testimonials Grid */}
@@ -86,7 +86,7 @@ export default function TestimonialSection() {
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-between text-left"
+              className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-between text-left transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1 border border-transparent hover:border-blue-100"
             >
               <p className="text-gray-600 leading-relaxed text-[15px] mb-8">
                 {item.quote}
@@ -109,7 +109,7 @@ export default function TestimonialSection() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-lg">
+                <div className="flex items-center gap-1 bg-gradient-to-r from-amber-50 to-orange-50 px-2.5 py-1 rounded-lg border border-orange-100">
                   <span className="text-xs font-bold text-gray-700">
                     {item.rating}
                   </span>

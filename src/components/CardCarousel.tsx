@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import {
-  Layout,
+  ShoppingBag,
   Code2,
-  Palette,
-  Megaphone,
-  Lightbulb,
+  Globe,
+  ShoppingCart,
+  RefreshCw,
   ArrowRight,
 } from "lucide-react";
 
@@ -14,38 +14,38 @@ const CardCarousel = () => {
   const cards = [
     {
       id: 1,
-      title: "UI/UX Design",
+      title: "Shopify Development",
       description:
-        "Crafting intuitive digital experiences that engage users through research-driven design and interactive prototyping.",
-      icon: <Layout className="w-4 h-4" />,
+        "Custom Shopify stores built for speed, conversion, and scale — from theme development to full Shopify Plus builds.",
+      icon: <ShoppingBag className="w-4 h-4" />,
     },
     {
       id: 2,
-      title: "Development",
+      title: "Custom Web Apps",
       description:
-        "Building scalable, high-performance web applications using the latest modern tech stacks and cloud infrastructure.",
+        "Bespoke web applications using React, Next.js, and Node.js — tailored to your unique business workflows.",
       icon: <Code2 className="w-4 h-4" />,
     },
     {
       id: 3,
-      title: "Branding",
+      title: "WordPress Sites",
       description:
-        "Defining unique visual identities and brand guidelines for modern companies looking to stand out.",
-      icon: <Palette className="w-4 h-4" />,
+        "Pixel-perfect WordPress websites with custom themes, plugins, and WooCommerce integrations that you can manage easily.",
+      icon: <Globe className="w-4 h-4" />,
     },
     {
       id: 4,
-      title: "Marketing",
+      title: "E-Commerce Solutions",
       description:
-        "Strategically expanding your digital reach and impact through data-driven campaigns and SEO mastery.",
-      icon: <Megaphone className="w-4 h-4" />,
+        "End-to-end online stores with payment gateways, inventory management, and optimized checkout flows.",
+      icon: <ShoppingCart className="w-4 h-4" />,
     },
     {
       id: 5,
-      title: "Consulting",
+      title: "Website Redesign",
       description:
-        "Strategic insights to navigate complex digital landscapes and optimize your business workflow for growth.",
-      icon: <Lightbulb className="w-4 h-4" />,
+        "Modernize your existing website with better UX, faster load times, mobile responsiveness, and improved SEO.",
+      icon: <RefreshCw className="w-4 h-4" />,
     },
   ];
 
@@ -108,10 +108,10 @@ const CardCarousel = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-14 px-4 gap-6">
           <div className="space-y-3 text-left">
             <h2 className="text-3xl lg:text-5xl font-semibold text-gray-900 tracking-tight">
-              <span className={gradientText}>Our</span> Expertise
+              <span className={gradientText}>What</span> We Build
             </h2>
             <p className="text-base text-gray-400 max-w-sm leading-relaxed">
-              Precision-engineered solutions for modern brands.
+              High-performance websites engineered for growth.
             </p>
           </div>
 
@@ -125,8 +125,8 @@ const CardCarousel = () => {
                   key={index}
                   onClick={() => setCurrentIndex(index + itemsToShow)}
                   className={`h-1 rounded-full transition-all duration-500 ${normalizedIndex === index
-                      ? "w-12 bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]"
-                      : "w-3 bg-gray-200 hover:bg-gray-300"
+                    ? "w-12 bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]"
+                    : "w-3 bg-gray-200 hover:bg-gray-300"
                     }`}
                 />
               );
@@ -137,8 +137,8 @@ const CardCarousel = () => {
         <div className="relative overflow-visible">
           <div
             className={`flex transition-transform ${isTransitioning
-                ? "duration-1000 cubic-bezier(0.23, 1, 0.32, 1)"
-                : "duration-0"
+              ? "duration-1000 cubic-bezier(0.23, 1, 0.32, 1)"
+              : "duration-0"
               }`}
             style={{
               transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)`,
@@ -150,9 +150,9 @@ const CardCarousel = () => {
                 style={{ width: `${100 / itemsToShow}%` }}
                 className="px-3 shrink-0 group"
               >
-                <div className="bg-[#FCFCFC] border border-gray-100 rounded-[24px] p-8 lg:p-10 h-[420px] flex flex-col justify-between relative transition-all duration-500 hover:bg-white hover:shadow-[0_15px_40px_rgba(0,0,0,0.03)] hover:border-gray-200 hover:-translate-y-1">
+                <div className="bg-white border border-gray-100 rounded-[24px] p-8 lg:p-10 h-[420px] flex flex-col justify-between relative transition-all duration-500 hover:shadow-[0_20px_50px_rgba(52,69,231,0.06)] hover:border-blue-100 hover:-translate-y-1">
                   <div className="relative z-10 space-y-6">
-                    <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center text-gray-800 border border-gray-100 transition-all duration-500 group-hover:bg-white group-hover:shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 border border-gray-100 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#3445E7] group-hover:to-[#07D6F3] group-hover:text-white group-hover:border-transparent group-hover:shadow-md group-hover:shadow-blue-500/20">
                       {card.icon}
                     </div>
 
@@ -173,7 +173,7 @@ const CardCarousel = () => {
                       <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-gray-400 group-hover/btn:text-[#04034C] transition-colors">
                         Learn More
                       </span>
-                      <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover/btn:bg-[#04034C] group-hover/btn:text-white group-hover/btn:border-gray-900 transition-all duration-300">
+                      <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover/btn:bg-gradient-to-r group-hover/btn:from-[#3445E7] group-hover/btn:to-[#07D6F3] group-hover/btn:text-white group-hover/btn:border-transparent group-hover/btn:shadow-md group-hover/btn:shadow-blue-500/20 transition-all duration-300">
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
                     </button>

@@ -36,7 +36,7 @@ const Brands = () => {
     <section className="w-full bg-white py-20 lg:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 mb-14 text-center">
         <p className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">
-          Trusted Collaboration
+          Brands We&apos;ve Built For
         </p>
       </div>
 

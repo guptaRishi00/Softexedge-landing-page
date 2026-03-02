@@ -19,10 +19,10 @@ const FOOTER_LINKS = {
     { name: "Contact", href: "/contact" },
   ],
   services: [
-    { name: "UI/UX Design", href: "/services/design" },
-    { name: "Web Development", href: "/services/dev" },
-    { name: "Branding", href: "/services/branding" },
-    { name: "Strategy", href: "/services/strategy" },
+    { name: "Shopify Development", href: "/services/shopify" },
+    { name: "WordPress Sites", href: "/services/wordpress" },
+    { name: "Custom Websites", href: "/services/custom" },
+    { name: "Website Redesign", href: "/services/redesign" },
   ],
   socials: [
     { icon: FaFacebookF, href: "#", label: "Facebook" },
@@ -59,8 +59,8 @@ const Footer = () => {
               />
             </Link>
             <p className="text-zinc-400 text-lg leading-relaxed max-w-sm font-medium">
-              We combine strategic thinking with world-class design to help
-              innovative companies scale their impact and define their legacy.
+              We design and develop high-converting websites on Shopify,
+              WordPress, and custom platforms — built to scale your business.
             </p>
             <div className="flex gap-4">
               {FOOTER_LINKS.socials.map((social, index) => (
@@ -124,7 +124,7 @@ const Footer = () => {
                 Stay Updated
               </h4>
               <p className="text-zinc-400 font-medium">
-                Subscribe to our newsletter for the latest design insights.
+                Get the latest on web development trends and tips.
               </p>
             </div>
             <form

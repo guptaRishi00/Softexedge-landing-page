@@ -27,7 +27,7 @@ const LogoCarousel = () => {
       {/* Optional: Minimalist Title for Projects */}
       <div className="px-6 lg:px-16 mb-14">
         <h2 className="text-sm font-medium uppercase tracking-[0.3em] text-black/40">
-          Selected Works
+          Our Recent Projects
         </h2>
       </div>
 
