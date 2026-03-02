@@ -38,14 +38,14 @@ const LogoCarousel = () => {
             <div
               key={index}
               // w-[80vw] on mobile makes it feel huge. md:w-[60vw] on desktop keeps it balanced.
-              className="flex w-[85vw] md:w-[65vw] items-center justify-center px-4"
+              className="flex w-[85vw] md:w-[70vw] items-center justify-center px-4"
             >
               <div className="relative w-full aspect-video overflow-hidden rounded-[10px] md:rounded-[20px] border border-black/[0.03] shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 hover:scale-[1.02] hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)]">
                 <Image
                   src={`/${src}`}
                   alt={`Project Screenshot ${index}`}
                   fill
-                  className="object-cover"
+                  className=""
                   priority={index < 4}
                 />
 

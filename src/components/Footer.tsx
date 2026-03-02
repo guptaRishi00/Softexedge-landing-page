@@ -1,192 +1,158 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-  FaArrowUp,
-} from "react-icons/fa";
+// 1. Import icons from lucide-react
+import { Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
 
-const FOOTER_LINKS = {
-  company: [
-    { name: "About Us", href: "/about" },
-    { name: "Our Team", href: "/team" },
-    { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
-  ],
-  services: [
-    { name: "Shopify Development", href: "/services/shopify" },
-    { name: "WordPress Sites", href: "/services/wordpress" },
-    { name: "Custom Websites", href: "/services/custom" },
-    { name: "Website Redesign", href: "/services/redesign" },
-  ],
-  socials: [
-    { icon: FaFacebookF, href: "#", label: "Facebook" },
-    { icon: FaTwitter, href: "#", label: "Twitter" },
-    { icon: FaInstagram, href: "#", label: "Instagram" },
-    { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
-  ],
-};
-
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState("");
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+export default function Footer() {
+  // 2. Define a map for the icons to keep the loop clean
+  const socialLinks = [
+    { name: "instagram", href: "https://instagram.com", Icon: Instagram },
+    { name: "facebook", href: "https://facebook.com", Icon: Facebook },
+    { name: "linkedin", href: "https://linkedin.com", Icon: Linkedin },
+    { name: "x", href: "https://x.com", Icon: Twitter }, // Lucide uses 'Twitter' for the X icon style
+  ];
 
   return (
-    <footer className="relative w-full bg-black text-white pt-20 lg:pt-28 pb-12 px-6 lg:px-16 overflow-hidden border-t border-white/10">
-      {/* Background Subtle Glow Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-[#2F85EA]/50 to-transparent" />
+    <footer className="px-5">
+      <section className="w-full pb-6 min-h-screen flex flex-col items-center justify-between gap-10">
+        <div className="w-full min-h-[90vh] bg-black rounded-[20px] lg:p-20 p-10 text-white relative overflow-hidden flex flex-col justify-center">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 h-full">
+            {/* Left Column */}
+            <div className="flex flex-col justify-between h-full min-h-[450px]">
+              <div className="space-y-12">
+                <h2 className="text-5xl lg:text-[84px] font-bold leading-[1] tracking-tight">
+                  Designing <br /> Brands <br />
+                  <span className="bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
+                    People Trust
+                  </span>
+                </h2>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
-          {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-8">
-            <Link href="/" className="inline-block group">
-              <Image
-                src="/logoWhite.svg"
-                alt="SoftEXedge Logo"
-                width={180}
-                height={50}
-                className="w-40 lg:w-48 object-contain transition-opacity group-hover:opacity-80"
-              />
-            </Link>
-            <p className="text-zinc-400 text-lg leading-relaxed max-w-sm font-medium">
-              We design and develop high-converting websites on Shopify,
-              WordPress, and custom platforms — built to scale your business.
-            </p>
-            <div className="flex gap-4">
-              {FOOTER_LINKS.socials.map((social, index) => (
-                <Link
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center 
-                             transition-all duration-300 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] 
-                             hover:border-transparent hover:scale-110 hover:shadow-[0_0_20px_rgba(47,133,234,0.3)]"
-                >
-                  <social.icon className="text-lg" />
-                </Link>
-              ))}
-            </div>
-          </div>
+                {/* 3. Updated Social Icons Section */}
+                <div className="flex items-center gap-6">
+                  {socialLinks.map(({ name, href, Icon }) => (
+                    <Link
+                      key={name}
+                      href={href}
+                      target="_blank"
+                      className="group transition-all"
+                      aria-label={name}
+                    >
+                      <div className="p-3 rounded-full border border-white/10 group-hover:border-white/40 group-hover:bg-white/10 transition-all duration-300">
+                        <Icon
+                          size={24}
+                          strokeWidth={1.5}
+                          className="text-white group-hover:scale-110 transition-transform"
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
-          {/* Navigation Columns */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-lg font-bold uppercase tracking-widest text-white">
-              Company
-            </h4>
-            <ul className="space-y-4">
-              {FOOTER_LINKS.company.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-zinc-400 hover:text-[#2F85EA] transition-colors font-medium flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-4 transition-all duration-300 h-px bg-[#2F85EA] mr-0 group-hover:mr-2" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-lg font-bold uppercase tracking-widest text-white">
-              Services
-            </h4>
-            <ul className="space-y-4">
-              {FOOTER_LINKS.services.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-zinc-400 hover:text-[#2F85EA] transition-colors font-medium flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-4 transition-all duration-300 h-px bg-[#2F85EA] mr-0 group-hover:mr-2" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter Column - Refined with Rounded-Full */}
-          <div className="lg:col-span-4 space-y-8">
-            <div>
-              <h4 className="text-lg font-bold uppercase tracking-widest text-white mb-4">
-                Stay Updated
-              </h4>
-              <p className="text-zinc-400 font-medium">
-                Get the latest on web development trends and tips.
+              <p className="text-white text-xl lg:text-2xl max-w-sm leading-relaxed font-medium mt-12 lg:mt-0">
+                Designing Brands That <br /> People Trust And Choose
               </p>
             </div>
-            <form
-              className="relative group max-w-md"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email address"
-                className="w-full bg-zinc-900/50 border border-white/10 rounded-full py-4 pl-7 pr-32 focus:outline-none 
-                           focus:ring-2 focus:ring-[#2F85EA]/50 focus:border-[#2F85EA] transition-all font-medium text-white placeholder:text-zinc-600"
-              />
-              <button
-                type="submit"
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-7 rounded-full font-bold 
-                           bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] text-white 
-                           transition-all hover:brightness-110 hover:shadow-lg active:scale-95 text-sm"
-              >
-                Join
-              </button>
-            </form>
+
+            {/* Right Column */}
+            <div className="flex flex-col justify-between h-full space-y-16 lg:space-y-0">
+              <div className="flex flex-col sm:flex-row gap-4 items-center">
+                <div className="relative flex-1 w-full">
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    className="w-full bg-zinc-900/60 border border-white/10 rounded-full px-8 py-5 focus:outline-none focus:ring-1 focus:ring-[#2F85EA] transition-all placeholder:text-zinc-600 text-lg"
+                  />
+                </div>
+                <button className="w-full sm:w-auto bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] text-white px-12 py-5 rounded-full cursor-pointer text-lg font-medium hover:opacity-90 transition-opacity whitespace-nowrap shadow-lg">
+                  Subscribe
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
+                <div className="space-y-8">
+                  <h4 className="text-white text-xl font-bold">Company</h4>
+                  <ul className="space-y-5 text-zinc-400 text-lg">
+                    {["Home", "About Us", "Services", "Contact", "Career"].map(
+                      (item) => (
+                        <li key={item}>
+                          <Link
+                            href="#"
+                            className="hover:text-white transition-colors"
+                          >
+                            {item}
+                          </Link>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+
+                <div className="space-y-8">
+                  <h4 className="text-white text-xl font-bold">Services</h4>
+                  <ul className="space-y-5 text-zinc-400 text-lg">
+                    {[
+                      "Branding & Identity",
+                      "UI/UX Design",
+                      "Digital Marketing",
+                      "Video Production",
+                      "Development",
+                    ].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href="#"
+                          className="hover:text-white transition-colors"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-8">
+                  <h4 className="text-white text-xl font-bold">Quick Links</h4>
+                  <ul className="space-y-5 text-zinc-400 text-lg">
+                    <li>
+                      <Link
+                        href="#"
+                        className="hover:text-white transition-colors"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="#"
+                        className="hover:text-white transition-colors"
+                      >
+                        Terms & Condition
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p className="text-zinc-500 text-sm font-medium">
-              © {currentYear} SoftEXedge.
-            </p>
-            <div className="flex gap-6">
-              <Link
-                href="/privacy"
-                className="text-zinc-500 hover:text-white text-sm transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-zinc-500 hover:text-white text-sm transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </div>
+        {/* Brand & Copyright Bar */}
+        <div className="flex w-full flex-col md:flex-row items-center justify-between lg:px-6 gap-6">
+          <div className="relative h-14 w-56">
+            <Image
+              src="/logo.svg"
+              alt="SoftEx Edge Logo"
+              fill
+              className="object-contain object-left"
+            />
           </div>
-
-          <button
-            onClick={scrollToTop}
-            className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-tighter"
-          >
-            Back to top
-            <div className="p-2 rounded-full border border-white/10 group-hover:border-[#2F85EA] transition-colors">
-              <FaArrowUp className="group-hover:-translate-y-1 transition-transform" />
-            </div>
-          </button>
+          <p className="text-zinc-800 font-medium text-lg text-center md:text-right">
+            Copyright © 2026 SoftEXedge Inc. All rights reserved.
+          </p>
         </div>
-      </div>
+      </section>
     </footer>
   );
-};
-
-export default Footer;
+}

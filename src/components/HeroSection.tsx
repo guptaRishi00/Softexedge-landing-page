@@ -1,114 +1,155 @@
 "use client";
 
+import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { MoveRight } from "lucide-react";
+import { MoveRight, SendHorizontal } from "lucide-react";
 import Link from "next/link";
 
 const HeroSection = () => {
+  const [service, setService] = useState("");
+
   return (
-    <section className="relative w-full bg-white py-20 lg:py-28 px-6 lg:px-16 overflow-hidden">
-      {/* SCALED UP AURA: Soft anchoring glow */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-br from-blue-50/60 to-cyan-50/40 rounded-full blur-[120px] -z-10" />
+    <section className="relative w-full bg-white py-20 lg:py-40 px-6 lg:px-16 overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
-        {/* LEFT: COMMANDING CONTENT */}
+        {/* LEFT: CONTENT */}
         <div className="flex flex-col gap-10 w-full lg:w-[55%]">
           <div className="space-y-6">
-            <div className="flex items-center gap-4 border border-blue-200/60 bg-blue-50/30 rounded-full px-4 py-1.5 w-max">
-              <span className="text-[13px] font-bold text-[#3445E7]/70">
-                Web Development Experts
+            <div className="flex items-center gap-2 bg-white rounded-full px-4 py-1.5 border-gray-300 border w-fit">
+              <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2F85EA] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2F85EA]"></span>
+              </div>
+              <span className="text-[12px] font-bold bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent uppercase tracking-widest">
+                Available for New Projects
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[80px] leading-[0.95] font-extrabold text-[#04034C] tracking-tighter">
+            <h1 className="text-5xl md:text-7xl lg:text-[80px] leading-[0.9] font-extrabold text-[#04034C] tracking-tighter">
               Building Websites <br />
-              <span className="bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
                 That Convert
               </span>
             </h1>
           </div>
 
-          <p className="text-lg md:text-xl text-gray-500 max-w-lg leading-relaxed font-medium">
+          <p className="text-lg md:text-xl text-gray-400 max-w-lg leading-relaxed font-medium">
             We build high-performance websites on{" "}
-            <span className="text-[#04034C]">Shopify, WordPress, and custom stacks</span>{" "}
-            that drive traffic, engage visitors, and grow your revenue.
+            <span className="text-[#04034C]">
+              Shopify, WordPress, and custom stacks
+            </span>{" "}
+            that drive growth.
           </p>
 
           <div className="pt-2">
             <Link
               href="/services"
-              className="group inline-flex items-center gap-3 bg-white px-10 py-4 rounded-full border border-gray-300
-               text-[16px] font-bold text-[#04034C]
-               hover:text-white hover:border-transparent
-               hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3]
-               hover:shadow-lg hover:shadow-blue-500/20
-               active:scale-95 transition-all duration-300"
+              className="group inline-flex items-center gap-3 bg-[#04034C] px-10 py-5 rounded-full text-[16px] font-medium text-white transition-all duration-300 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-900/5"
             >
               <span>View our services</span>
-
-              {/* Animated Arrow Icon */}
-              <div className="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-                <MoveRight size={20} />
-              </div>
+              <MoveRight
+                size={20}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
           </div>
         </div>
 
-        {/* RIGHT: PREMIUM FORM CARD */}
-        <div className="w-full lg:w-[42%]">
-          <div className="bg-white rounded-[32px] p-10 lg:p-12 border border-gray-200/80 shadow-[0_20px_60px_-15px_rgba(4,3,76,0.08)] hover:shadow-[0_30px_80px_-15px_rgba(4,3,76,0.12)] transition-shadow duration-500 relative z-10">
-            <div className="mb-10">
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#04034C] tracking-tight">
-                Let&apos;s Talk
-              </h2>
-              <p className="text-[15px] text-gray-400 mt-2">
-                Fill out the form and we&apos;ll reach out shortly.
-              </p>
+        {/* RIGHT: FORM */}
+        <div className="w-full lg:w-[40%]">
+          <div className="relative p-[1.5px] rounded-[40px] bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]">
+            <div className="relative bg-white rounded-[38.5px] p-10 lg:p-12">
+              <div className="mb-12">
+                <h2 className="text-4xl font-black text-[#04034C] tracking-tight">
+                  Let&apos;s Talk<span className="text-[#2F85EA]">.</span>
+                </h2>
+              </div>
+
+              <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+                {/* Full Name */}
+                <div className="relative group">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-3 text-[#04034C] text-[16px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                  />
+                  <label className="absolute left-0 top-3 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[12px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[12px]">
+                    Full Name
+                  </label>
+                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                </div>
+
+                {/* Email */}
+                <div className="relative group">
+                  <input
+                    type="email"
+                    placeholder=" "
+                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-3 text-[#04034C] text-[16px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                  />
+                  <label className="absolute left-0 top-3 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[12px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[12px]">
+                    Work Email
+                  </label>
+                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                </div>
+
+                {/* Website URL - NEW FIELD */}
+                <div className="relative group">
+                  <input
+                    type="url"
+                    placeholder=" "
+                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-3 text-[#04034C] text-[16px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                  />
+                  <label className="absolute left-0 top-3 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[12px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[12px]">
+                    Website URL
+                  </label>
+                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                </div>
+
+                {/* Dropdown */}
+                <div className="relative group">
+                  <select
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-3 text-[#04034C] text-[16px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
+                  >
+                    <option value="" disabled hidden></option>
+                    <option value="shopify">Shopify Development</option>
+                    <option value="wordpress">WordPress Development</option>
+                    <option value="custom">Custom Website</option>
+                  </select>
+
+                  <label
+                    className={`absolute left-0 pointer-events-none transition-all duration-300 
+                    ${
+                      service
+                        ? "-top-5 text-[12px] text-[#2F85EA] font-bold"
+                        : "top-3 text-gray-400 text-[16px] group-focus-within:-top-5 group-focus-within:text-[12px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
+                    }`}
+                  >
+                    What do you need?
+                  </label>
+
+                  <IoIosArrowDown className="absolute right-0 top-4 text-gray-300 group-focus-within:rotate-180 transition-transform" />
+                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                </div>
+
+                <button
+                  type="submit"
+                  className="relative w-full group overflow-hidden rounded-full p-[1.5px] transition-transform active:scale-95"
+                >
+                  <div className="relative flex items-center justify-center gap-3 bg-[#04034C] text-white py-4.5 rounded-full transition-all duration-300 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] cursor-pointer">
+                    <span className="font-medium tracking-tight">
+                      Send Message
+                    </span>
+                    <SendHorizontal
+                      size={18}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </div>
+                </button>
+              </form>
             </div>
-
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-              <div className="group relative">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full bg-transparent border-b border-gray-300 py-4 text-[16px] focus:outline-none focus:border-[#2F85EA] transition-all placeholder:text-gray-400"
-                />
-                {/* Focus Line Animation */}
-                <div className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#2F85EA] group-focus-within:w-full transition-all duration-500" />
-              </div>
-
-              <div className="group relative">
-                <input
-                  type="email"
-                  placeholder="Work Email"
-                  className="w-full bg-transparent border-b border-gray-300 py-4 text-[16px] focus:outline-none focus:border-[#2F85EA] transition-all placeholder:text-gray-400"
-                />
-                <div className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#2F85EA] group-focus-within:w-full transition-all duration-500" />
-              </div>
-
-              <div className="relative group">
-                <select className="w-full bg-transparent border-b border-gray-300 py-4 text-[16px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer text-gray-400">
-                  <option value="">What do you need?</option>
-                  <option value="shopify">Shopify Development</option>
-                  <option value="wordpress">WordPress Development</option>
-                  <option value="custom">Custom Website</option>
-                  <option value="ecommerce">E-Commerce Store</option>
-                  <option value="redesign">Website Redesign</option>
-                </select>
-                <IoIosArrowDown className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none group-focus-within:text-[#2F85EA]" />
-                <div className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#2F85EA] group-focus-within:w-full transition-all duration-500" />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4.5 rounded-full text-[15px] font-bold text-white bg-[#04034C]
-                           hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3]
-                           hover:shadow-lg hover:shadow-blue-500/25
-                           transition-all duration-500 transform cursor-pointer"
-              >
-                Get Started
-              </button>
-            </form>
           </div>
         </div>
       </div>

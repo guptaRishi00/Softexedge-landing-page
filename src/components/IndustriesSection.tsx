@@ -93,8 +93,8 @@ const IndustriesSection = () => {
         </h2>
 
         <p className="text-gray-500 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-          From DTC brands to enterprise platforms, we build websites
-          that drive real business results across every sector.
+          From DTC brands to enterprise platforms, we build websites that drive
+          real business results across every sector.
         </p>
       </div>
 
@@ -105,7 +105,7 @@ const IndustriesSection = () => {
       </div>
 
       <button
-        className={`${brandGradient} hover:brightness-110 active:scale-95 text-white font-semibold px-8 py-3 rounded-full cursor-pointer transition-all duration-300 text-sm shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30`}
+        className={`${brandGradient} hover:brightness-110 active:scale-95 text-white font-semibold px-8 py-3 rounded-full cursor-pointer transition-all duration-300 text-sm `}
       >
         Get a Free Quote
       </button>

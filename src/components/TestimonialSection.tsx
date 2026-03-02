@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -16,7 +18,7 @@ const testimonials: Testimonial[] = [
     author: "Nitin Pamnani",
     role: "Founder - Itokri",
     image:
-      "https://images.unsplash.com/photo-1615109398623-88346a601842?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFufGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1615109398623-88346a601842?w=600&auto=format&fit=crop&q=60",
     rating: "5.0",
   },
   {
@@ -25,7 +27,7 @@ const testimonials: Testimonial[] = [
     author: "Suchita A Mukerji",
     role: "Founder - The Basic Women",
     image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60",
     rating: "5.0",
   },
   {
@@ -34,7 +36,7 @@ const testimonials: Testimonial[] = [
     author: "Varun Todi",
     role: "Founder - Oye Happy",
     image:
-      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=60",
     rating: "5.0",
   },
   {
@@ -43,42 +45,54 @@ const testimonials: Testimonial[] = [
     author: "Sachin Darbarwar",
     role: "Founder - Zeroharm",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60",
     rating: "5.0",
   },
+];
+
+// Array of distinct avatar images for the header
+const headerAvatars = [
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&auto=format&fit=crop",
 ];
 
 export default function TestimonialSection() {
   return (
     <section className="bg-[#F3F4F6] py-20 lg:py-28 px-6 lg:px-16 font-sans">
       <div className="max-w-7xl mx-auto text-center">
-        {/* Top Avatar Group */}
-        <div className="flex justify-center -space-x-2 mb-6">
-          {[1, 2, 3, 4].map((i) => (
+        {/* Top Avatar Group with Distinct Images */}
+        <div className="flex justify-center -space-x-3 mb-6">
+          {headerAvatars.map((src, i) => (
             <div
               key={i}
-              className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200"
+              className="w-12 h-12 rounded-full border-[3px] border-white overflow-hidden bg-gray-200 shadow-sm"
             >
               <Image
-                src={`https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D`}
-                width={200}
-                height={200}
-                alt="Client"
+                src={src}
+                width={48}
+                height={48}
+                alt={`Client ${i + 1}`}
                 className="w-full h-full object-cover"
               />
             </div>
           ))}
+          {/* Optional "plus" indicator for extra flair */}
+          <div className="w-12 h-12 rounded-full border-[3px] border-white overflow-hidden bg-[#04034C] flex items-center justify-center shadow-sm">
+            <span className="text-[10px] font-bold text-white">+100</span>
+          </div>
         </div>
 
-        {/* Heading with your custom gradient */}
-        <h2 className="text-5xl md:text-6xl font-medium text-gray-900 mb-4">
+        {/* Heading */}
+        <h2 className="text-5xl md:text-6xl font-bold text-[#04034C] mb-4 tracking-tighter">
           <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
             100+
           </span>{" "}
           Happy Clients
         </h2>
-        <p className="text-gray-600 font-medium mb-14">
-          Trusted by businesses worldwide for web development
+        <p className="text-gray-500 font-medium mb-16 text-lg">
+          Trusted by businesses worldwide for high-performance web development
         </p>
 
         {/* Testimonials Grid */}
@@ -86,15 +100,21 @@ export default function TestimonialSection() {
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-between text-left transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/5 hover:-translate-y-1 border border-transparent hover:border-blue-100"
+              className="bg-white p-8 rounded-3xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] flex flex-col justify-between text-left transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2 border border-transparent hover:border-blue-100/50"
             >
-              <p className="text-gray-600 leading-relaxed text-[15px] mb-8">
-                {item.quote}
-              </p>
+              <div className="mb-8">
+                {/* Visual Quote Icon for style */}
+                <span className="text-4xl font-serif text-blue-100 block h-6 leading-none select-none">
+                  “
+                </span>
+                <p className="text-gray-600 leading-relaxed text-[15px] italic">
+                  {item.quote}
+                </p>
+              </div>
 
               <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100">
+                  <div className="w-11 h-11 rounded-full overflow-hidden bg-gray-100 ring-2 ring-gray-50">
                     <img
                       src={item.image}
                       alt={item.author}
@@ -102,18 +122,20 @@ export default function TestimonialSection() {
                     />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-gray-900 leading-tight">
+                    <h4 className="text-sm font-bold text-[#04034C] leading-tight">
                       {item.author}
                     </h4>
-                    <p className="text-xs text-gray-500">{item.role}</p>
+                    <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mt-0.5">
+                      {item.role}
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 bg-gradient-to-r from-amber-50 to-orange-50 px-2.5 py-1 rounded-lg border border-orange-100">
-                  <span className="text-xs font-bold text-gray-700">
+                <div className="flex items-center gap-1 bg-amber-50/60 px-2 py-1 rounded-lg border border-amber-100/50">
+                  <span className="text-[11px] font-bold text-amber-700">
                     {item.rating}
                   </span>
-                  <span className="text-orange-400 text-xs">★</span>
+                  <span className="text-amber-400 text-[10px]">★</span>
                 </div>
               </div>
             </div>

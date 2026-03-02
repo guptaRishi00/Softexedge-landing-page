@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Smartphone,
-  Zap,
-  Search,
-  ArrowRight,
-} from "lucide-react";
+import { Smartphone, Zap, Search, ArrowRight } from "lucide-react";
 
 const FeatureShowcase = () => {
   const features = [
@@ -40,16 +35,15 @@ const FeatureShowcase = () => {
     <section className="w-full py-20 lg:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
         {/* Left Column (Call to Action Card) */}
-        <div className="md:col-span-4 bg-[#04034C] rounded-3xl p-8 flex flex-col items-start text-left space-y-6 relative overflow-hidden group min-h-[280px] justify-center gap-10 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/20">
+        <div className="md:col-span-4 bg-[#04034C] rounded-3xl p-8 flex flex-col items-start text-left space-y-6 relative overflow-hidden group min-h-[280px] justify-center gap-10 hover:shadow-2xl hover:shadow-blue-900/20">
           {/* Decorative gradient line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]" />
 
           <h3 className="text-2xl font-semibold text-white leading-snug relative z-10">
             Ready to launch <br /> your next website?
           </h3>
 
           <button
-            className={`relative z-10 bg-white text-[#04034C] hover:text-white hover:${primaryGradient} rounded-full px-6 py-2.5 text-sm font-semibold transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-lg hover:shadow-blue-500/20`}
+            className={`relative z-10 bg-white text-[#04034C] hover:text-white hover:${primaryGradient} rounded-full px-6 py-2.5 text-sm font-semibold flex items-center gap-2 cursor-pointer`}
           >
             Start a Project <ArrowRight className="w-4 h-4" />
           </button>
@@ -71,8 +65,8 @@ const FeatureShowcase = () => {
               </span>
             </h2>
             <p className="text-base text-gray-500 max-w-lg leading-relaxed">
-              Every website comes standard with the essentials to perform
-              and convert from day one.
+              Every website comes standard with the essentials to perform and
+              convert from day one.
             </p>
           </div>
 
@@ -81,7 +75,7 @@ const FeatureShowcase = () => {
             {features.map((feature) => (
               <div key={feature.id} className="space-y-4 group">
                 {/* Icon Container - Small & Minimal */}
-                <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#04034C] transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-[#3445E7] group-hover:to-[#07D6F3] group-hover:text-white group-hover:border-transparent group-hover:shadow-md group-hover:shadow-blue-500/15">
+                <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#04034C] transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-[#3445E7] group-hover:to-[#07D6F3] group-hover:text-white">
                   {feature.icon}
                 </div>
 

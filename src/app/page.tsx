@@ -26,6 +26,7 @@ export default function Home() {
       <LogoCarousel />
       <IndustriesSection />
       <TestimonialSection />
+      <FAQSection />
       <Footer />
       {/* <ProcessSection />
       <AdvantageSection />
