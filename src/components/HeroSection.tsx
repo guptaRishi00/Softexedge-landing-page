@@ -9,7 +9,7 @@ const HeroSection = () => {
   const [service, setService] = useState("");
 
   return (
-    <section className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden">
+    <section className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-0 mt-20">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/30 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-310 mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">

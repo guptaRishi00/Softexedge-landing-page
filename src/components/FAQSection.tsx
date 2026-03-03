@@ -131,13 +131,21 @@ const FAQSection = () => {
         </div>
 
         {/* Bottom CTA for a modern touch */}
-        <div className="mt-20 p-8 rounded-[32px] bg-[#04034C] flex flex-col lg:flex-row items-center justify-between gap-6">
-          <p className="text-white font-medium text-lg text-center lg:text-left">
-            Still have more questions about your project?
-          </p>
-          <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white cursor-pointer">
-            Schedule a call
-          </button>
+        {/* Gradient Border Wrapper */}
+        <div className="mt-20 p-[1px] rounded-[32px] bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] ">
+          {/* Inner Glass Container */}
+          <div className="p-8 rounded-[31px] bg-white backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            {/* Subtle internal glow */}
+            <div className="absolute inset-0 bg-linear-to-br from-white/40 to-transparent pointer-events-none" />
+
+            <p className="text-[#04034C] font-bold text-lg text-center lg:text-left relative z-10">
+              Still have more questions about your project?
+            </p>
+
+            <button className="relative z-10 px-8 py-4 border text-gray-900 hover:border-white border-gray-900 hover:text-white rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] cursor-pointer active:scale-95">
+              Schedule a call
+            </button>
+          </div>
         </div>
       </div>
     </section>

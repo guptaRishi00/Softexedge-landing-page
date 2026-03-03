@@ -16,46 +16,42 @@ const testimonials: Testimonial[] = [
     quote:
       "SoftEXedge built us a custom Shopify store that completely transformed our online sales. Within the first month, our conversion rate jumped by 40% and the site loads faster than ever.",
     author: "Nitin Pamnani",
-    role: "Founder - Itokri",
-    image:
-      "https://images.unsplash.com/photo-1615109398623-88346a601842?w=600&auto=format&fit=crop&q=60",
-    rating: "5.0",
+    role: "Authentica",
+    image: "/authentica.png",
+    rating: "4.5",
   },
   {
     quote:
       "Our WordPress website was outdated and slow. SoftEXedge redesigned it from the ground up — it’s now mobile-first, blazing fast, and our organic traffic has doubled in three months.",
     author: "Suchita A Mukerji",
-    role: "Founder - The Basic Women",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60",
-    rating: "5.0",
+    role: "Neuralinq",
+    image: "/neuralinq.png",
+    rating: "4.7",
   },
   {
     quote:
       "We needed a custom web application for our gifting platform, and SoftEXedge delivered beyond expectations. The checkout flow they built contributed to a 35% revenue increase during our peak season.",
     author: "Varun Todi",
-    role: "Founder - Oye Happy",
-    image:
-      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=60",
-    rating: "5.0",
+    role: "Bloomvest",
+    image: "/bloomvest.svg",
+    rating: "4.8",
   },
   {
     quote:
       "SoftEXedge revamped our e-commerce product pages with a focus on speed and UX. Their ability to blend design with performance truly transformed our online store and boosted our sales.",
     author: "Sachin Darbarwar",
-    role: "Founder - Zeroharm",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60",
-    rating: "5.0",
+    role: "Casino Scan",
+    image: "/casino.png",
+    rating: "4.9",
   },
 ];
 
 // Array of distinct avatar images for the header
 const headerAvatars = [
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&auto=format&fit=crop",
+  "/casino.png",
+  "/neuralinq.png",
+  "/authentica.png",
+  "/bloomvest.svg",
 ];
 
 export default function TestimonialSection() {
@@ -100,7 +96,7 @@ export default function TestimonialSection() {
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-3xl shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] flex flex-col justify-between text-left transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2 border border-transparent hover:border-blue-100/50"
+              className="bg-white p-8 rounded-3xl  flex flex-col justify-between text-left transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2 border border-transparent hover:border-blue-100/50"
             >
               <div className="mb-8">
                 {/* Visual Quote Icon for style */}

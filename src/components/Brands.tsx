@@ -7,27 +7,27 @@ const Brands = () => {
   // Static logo data following the LogoItem type from your code
   const partnerLogos = [
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+      src: "/betting.png",
       alt: "Amazon",
     },
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      src: "/blackshark.png",
       alt: "Google",
     },
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+      src: "/abc.png",
       alt: "Netflix",
     },
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Slack_Technologies_Logo.svg",
+      src: "/aqualog.png",
       alt: "Slack",
     },
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+      src: "/auth.png",
       alt: "IBM",
     },
     {
-      src: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      src: "/threadify.png",
       alt: "Microsoft",
     },
   ];
@@ -45,8 +45,8 @@ const Brands = () => {
         <LogoLoop
           logos={partnerLogos}
           speed={40}
-          gap={80}
-          logoHeight={45}
+          gap={50}
+          logoHeight={90}
           pauseOnHover={true}
           fadeOut={true}
           className=" hover:opacity-100 transition-all duration-500"

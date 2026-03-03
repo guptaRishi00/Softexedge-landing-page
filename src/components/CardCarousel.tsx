@@ -1,17 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   ShoppingBag,
   Code2,
-  Globe,
-  ShoppingCart,
-  RefreshCw,
+  Target,
+  Layers,
+  TrendingUp,
+  Settings,
   ArrowRight,
-  Target, // Added for Landing Pages
-  Layers, // Added for End-to-End
-  TrendingUp, // Added for CRO
-  Settings, // Added for Maintenance
 } from "lucide-react";
 
 const CardCarousel = () => {
@@ -20,60 +17,64 @@ const CardCarousel = () => {
       id: 1,
       title: "Landing Pages",
       description:
-        "High-converting landing pages designed to turn traffic into customers, built using real data and proven D2C frameworks.",
-      icon: <Target className="w-4 h-4" />,
+        "High-converting landing pages designed to turn traffic into customers, built using real data.",
+      icon: <Target className="w-5 h-5" />,
     },
     {
       id: 2,
-      title: "End-to-End Website Development",
+      title: "End-to-End Dev",
       description:
-        "Complete websites for new brands or full redesigns for growing ones. Strategy, design, copy, and build done start to finish.",
-      icon: <Layers className="w-4 h-4" />,
+        "Complete websites for new brands. Strategy, design, copy, and build done start to finish.",
+      icon: <Layers className="w-5 h-5" />,
     },
     {
       id: 3,
       title: "CRO Retainers",
       description:
-        "Ongoing optimization for your website. Monthly audits, new pages, A/B tests, and updates that keep conversions climbing.",
-      icon: <TrendingUp className="w-4 h-4" />,
+        "Ongoing optimization. Monthly audits, A/B tests, and updates that keep conversions climbing.",
+      icon: <TrendingUp className="w-5 h-5" />,
     },
     {
       id: 4,
-      title: "Shopify Store Maintenance",
+      title: "Shopify Maintenance",
       description:
-        "Hands-on support to keep your Shopify store fast, functional, and up to date so you can focus on running the business.",
-      icon: <Settings className="w-4 h-4" />,
+        "Hands-on support to keep your store fast and functional so you can focus on business.",
+      icon: <Settings className="w-5 h-5" />,
     },
     {
       id: 5,
       title: "Shopify Development",
       description:
-        "Custom Shopify stores built for speed, conversion, and scale — from theme development to full Shopify Plus builds.",
-      icon: <ShoppingBag className="w-4 h-4" />,
+        "Custom stores built for speed and scale — from theme dev to full Shopify Plus builds.",
+      icon: <ShoppingBag className="w-5 h-5" />,
     },
     {
       id: 6,
       title: "Custom Web Apps",
       description:
-        "Bespoke web applications using React, Next.js, and Node.js — tailored to your unique business workflows.",
-      icon: <Code2 className="w-4 h-4" />,
+        "Bespoke applications using React and Next.js tailored to your unique workflows.",
+      icon: <Code2 className="w-5 h-5" />,
     },
   ];
 
   const gradientText =
     "bg-clip-text text-transparent bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
 
-  const [itemsToShow, setItemsToShow] = useState(2);
+  // --- Responsive Logic ---
+  const [itemsToShow, setItemsToShow] = useState(1);
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsToShow(window.innerWidth < 1024 ? 1 : 2);
+      if (window.innerWidth >= 1280) setItemsToShow(3);
+      else if (window.innerWidth >= 768) setItemsToShow(2);
+      else setItemsToShow(1);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Prepare extended cards for infinite loop
   const extendedCards = [
     ...cards.slice(-itemsToShow),
     ...cards,
@@ -84,25 +85,24 @@ const CardCarousel = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const totalCards = cards.length;
 
-  useEffect(() => {
+  // --- Infinite Loop Logic ---
+  const handleTransitionEnd = useCallback(() => {
     if (currentIndex >= totalCards + itemsToShow) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(itemsToShow);
-      }, 700);
-    }
-    if (currentIndex <= itemsToShow - 1) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(totalCards + itemsToShow - 1);
-      }, 700);
+      setIsTransitioning(false);
+      setCurrentIndex(itemsToShow);
+    } else if (currentIndex <= 0) {
+      setIsTransitioning(false);
+      setCurrentIndex(totalCards);
     }
   }, [currentIndex, totalCards, itemsToShow]);
 
   useEffect(() => {
     if (!isTransitioning) {
-      void document.documentElement.offsetHeight;
-      setIsTransitioning(true);
+      // Small delay to allow the jump to happen before re-enabling transition
+      const raf = requestAnimationFrame(() => {
+        setIsTransitioning(true);
+      });
+      return () => cancelAnimationFrame(raf);
     }
   }, [isTransitioning]);
 
@@ -114,19 +114,21 @@ const CardCarousel = () => {
   }, []);
 
   return (
-    <section className="py-20 lg:py-28 px-6 lg:px-16 bg-white overflow-hidden">
+    <section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-14 px-4 gap-6">
-          <div className="space-y-3 text-left">
-            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 tracking-tight">
-              <span className={`${gradientText} font-bold`}>What</span> We Build
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 lg:mb-14 px-2 gap-8">
+          <div className="space-y-3">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
+              <span className={gradientText}>What</span> We Build
             </h2>
-            <p className="text-base text-gray-400 max-w-sm leading-relaxed">
+            <p className="text-gray-500 max-w-sm text-lg leading-relaxed">
               High-performance websites engineered for growth.
             </p>
           </div>
 
-          <div className="flex gap-2 mb-1">
+          {/* Indicators / Pagination */}
+          <div className="flex gap-2 pb-2">
             {cards.map((_, index) => {
               const normalizedIndex =
                 (currentIndex - itemsToShow + totalCards) % totalCards;
@@ -134,37 +136,36 @@ const CardCarousel = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index + itemsToShow)}
-                  className={`h-1 rounded-full transition-all duration-500 ${
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
                     normalizedIndex === index
-                      ? "w-12 bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]"
-                      : "w-3 bg-gray-200 hover:bg-gray-300"
+                      ? "w-8 sm:w-12 bg-gradient-to-r from-[#3445E7] to-[#07D6F3]"
+                      : "w-2 sm:w-3 bg-gray-200 hover:bg-gray-300"
                   }`}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
               );
             })}
           </div>
         </div>
 
-        <div className="relative overflow-visible">
+        {/* Carousel Container */}
+        <div className="relative">
           <div
-            className={`flex transition-transform ${
-              isTransitioning
-                ? "duration-1000 cubic-bezier(0.23, 1, 0.32, 1)"
-                : "duration-0"
-            }`}
+            className={`flex ${isTransitioning ? "transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" : "transition-none"}`}
             style={{
               transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)`,
             }}
+            onTransitionEnd={handleTransitionEnd}
           >
             {extendedCards.map((card, index) => (
               <div
                 key={`${card.id}-${index}`}
                 style={{ width: `${100 / itemsToShow}%` }}
-                className="px-3 shrink-0 group"
+                className="px-2 sm:px-3 shrink-0 group"
               >
-                <div className="relative bg-white border border-gray-300 rounded-3xl p-8 lg:p-10 h-[420px] flex flex-col justify-between overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-blue-100">
+                <div className="relative bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 lg:p-10 min-h-[360px] lg:h-[400px] flex flex-col justify-between transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-2 hover:border-blue-200">
                   <div className="relative z-10 space-y-6">
-                    <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-700 border border-gray-100">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
                       {card.icon}
                     </div>
 
@@ -174,24 +175,24 @@ const CardCarousel = () => {
                       >
                         {card.title}
                       </h3>
-                      <p className="text-gray-400 text-base leading-relaxed max-w-xs">
+                      <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
                         {card.description}
                       </p>
                     </div>
                   </div>
 
-                  <div className="relative z-10 flex items-center justify-between cursor-pointer">
-                    <button className="group/btn flex items-center gap-4 rounded-full border border-gray-200 bg-white py-1.5 pl-5 pr-1.5 transition-all duration-300 hover:bg-linear-to-r hover:from-[#3445E7] hover:to-[#07D6F3]">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 cursor-pointer group-hover/btn:text-white">
+                  <div className="relative z-10 flex items-center justify-between">
+                    <button className="group/btn flex items-center gap-3 rounded-full border border-gray-200 bg-white py-1.5 pl-4 pr-1.5 transition-all duration-300 hover:bg-blue-600 hover:border-blue-600">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 group-hover/btn:text-white">
                         Learn More
                       </span>
-                      <div className="flex h-8 cursor-pointer w-8 items-center justify-center rounded-full border border-gray-100 bg-gray-50 transition-all duration-300 group-hover/btn:border-white/20 group-hover/btn:bg-white/20 group-hover/btn:text-white">
-                        <ArrowRight className="h-3.5 w-3.5" />
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-50 transition-all duration-300 group-hover/btn:bg-white/20 text-gray-600 group-hover/btn:text-white">
+                        <ArrowRight className="h-4 w-4" />
                       </div>
                     </button>
 
                     <span
-                      className={`absolute -bottom-6 -right-2 select-none z-0 font-black text-8xl transition-all duration-700 opacity-30 group-hover:opacity-60 group-hover:scale-110 ${gradientText}`}
+                      className={`absolute -bottom-4 -right-2 select-none z-0 font-black text-7xl lg:text-8xl transition-all duration-700 opacity-30 group-hover:opacity-80 ${gradientText}`}
                     >
                       0{((index - itemsToShow + totalCards) % totalCards) + 1}
                     </span>
