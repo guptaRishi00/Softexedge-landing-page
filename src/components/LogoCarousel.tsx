@@ -4,68 +4,58 @@ import Image from "next/image";
 
 const LogoCarousel = () => {
   const projects = [
-    "m1.png",
-    "m2.png",
-    "m3.png",
-    "m4.png",
-    "m5.png",
-    "m6.png",
-    "m7.png",
-    "m8.png",
-    "m9.png",
-    "m10.png",
-    "m11.png",
-    "m12.png",
-    "m13.png",
-    "m14.png",
-    "m15.png",
-    "m16.png",
+    "1.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+    "10.png",
+    "11.png",
+    "12.png",
+    "13.png",
   ];
 
-  // Double the array for seamless looping
   const displayProjects = [...projects, ...projects];
 
   return (
-    <section className="w-full bg-white py-20 lg:py-28 overflow-hidden font-sans">
-      {/* Section Header */}
-      <div className="px-6 lg:px-16 mb-16">
-        <p className="text-[#2F85EA] font-bold uppercase tracking-[0.2em] text-xs mb-4">
-          Projects Showcase
+    // Reduced section padding from py-20/28 to py-12/16
+    <section className="w-full bg-white py-12 lg:py-16 overflow-hidden font-sans">
+      {/* Reduced bottom margin from mb-16 to mb-10 */}
+      <div className="px-6 lg:px-16 mb-10">
+        <p className="text-[#2F85EA] font-bold uppercase tracking-[0.2em] text-xs mb-3">
+          Our Portfolio
         </p>
       </div>
 
       <div className="relative flex items-center">
-        {/* Infinite Scroll Track */}
         <div className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused] cursor-pointer">
           {displayProjects.map((src, index) => (
             <div
               key={index}
-              // Narrower width for mobile portrait orientation
-              className="flex w-[260px] md:w-[320px] items-center justify-center px-4"
+              // Reduced horizontal gap from px-3/5 to px-1.5/2.5
+              className="flex w-[220px] md:w-[280px] items-center justify-center px-1.5 md:px-2.5"
             >
-              <div className="relative w-full aspect-[9/19] overflow-hidden rounded-[30px] md:rounded-[40px] border-[6px] md:border-[8px] border-black shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] transition-all duration-700 hover:scale-[1.05] hover:shadow-blue-500/20">
-                {/* Screenshot Image */}
+              <div className="relative w-full aspect-[9/19] overflow-hidden rounded-[10px] md:rounded-[12px] border border-gray-100 shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-700 hover:scale-[1.03] hover:shadow-blue-500/10">
                 <Image
                   src={`/${src}`}
-                  alt={`Mobile Project ${index}`}
+                  alt={`Project Screenshot ${index}`}
                   fill
-                  className="object-cover"
+                  className=""
                   priority={index < 6}
                 />
-
-                {/* Glassy Notch/Dynamic Island Detail */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-20 hidden md:block" />
-
-                {/* Subtle Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Gradient Fades for the edges */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
+        {/* Adjusted fade width to match the tighter layout */}
+        <div className="absolute inset-y-0 left-0 w-16 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
       </div>
 
       <style jsx>{`
@@ -80,10 +70,8 @@ const LogoCarousel = () => {
         .animate-infinite-scroll {
           display: flex;
           width: max-content;
-          /* Faster speed (35s) because items are narrower */
-          animation: infinite-scroll 35s linear infinite;
+          animation: infinite-scroll 40s linear infinite;
         }
-
         :global(html, body) {
           max-width: 100%;
           overflow-x: hidden;
