@@ -41,6 +41,9 @@ const gilroy = localFont({
 export const metadata: Metadata = {
   title: "SoftEXedge",
   description: "Crafting Digital Experiences",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({

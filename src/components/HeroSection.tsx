@@ -3,13 +3,56 @@
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { MoveRight, SendHorizontal } from "lucide-react";
-import Link from "next/link";
 
 const HeroSection = () => {
   const [service, setService] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      formType: "Hero Section Contact Form",
+      fullName: formData.get("fullName"),
+      email: formData.get("email"),
+      website: formData.get("website") || "N/A",
+      phoneNumber: formData.get("phoneNumber"),
+      service: service || "Not Selected",
+      timestamp: new Date().toLocaleString(),
+    };
+
+    try {
+      // Using the Google Apps Script Web App URL provided
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
+        {
+          method: "POST",
+          mode: "no-cors", // Required for Google Apps Script web apps
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      alert("Message sent successfully! We will get back to you soon.");
+      (e.target as HTMLFormElement).reset();
+      setService("");
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("There was an error sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <section id="hero" className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-0 mt-20">
+    <section
+      id="hero"
+      className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-0 mt-20"
+    >
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/30 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-310 mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
@@ -46,7 +89,9 @@ const HeroSection = () => {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                document
+                  .getElementById("services")
+                  ?.scrollIntoView({ behavior: "smooth" });
               }}
               className="group inline-flex items-center gap-3 bg-transparent cursor-pointer border border-gray-300 px-8 py-4 rounded-full text-[15px] font-medium text-gray-900  hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white hover:text-white hover:scale-[1.02] active:scale-95"
             >
@@ -69,11 +114,13 @@ const HeroSection = () => {
                 </h2>
               </div>
 
-              <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-8" onSubmit={handleSubmit}>
                 {/* Full Name */}
                 <div className="relative group">
                   <input
+                    name="fullName"
                     type="text"
+                    required
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
@@ -86,7 +133,9 @@ const HeroSection = () => {
                 {/* Email */}
                 <div className="relative group">
                   <input
+                    name="email"
                     type="email"
+                    required
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
@@ -99,6 +148,7 @@ const HeroSection = () => {
                 {/* Website URL */}
                 <div className="relative group">
                   <input
+                    name="website"
                     type="url"
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
@@ -112,7 +162,9 @@ const HeroSection = () => {
                 {/* Phone Number */}
                 <div className="relative group">
                   <input
+                    name="phoneNumber"
                     type="tel"
+                    required
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
@@ -127,6 +179,7 @@ const HeroSection = () => {
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
+                    required
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
                   >
                     <option value="" disabled hidden></option>
@@ -137,10 +190,11 @@ const HeroSection = () => {
 
                   <label
                     className={`absolute left-0 pointer-events-none transition-all duration-300 
-                    ${service
+                    ${
+                      service
                         ? "-top-5 text-[11px] text-[#2F85EA] font-bold"
                         : "top-2.5 text-gray-400 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
-                      }`}
+                    }`}
                   >
                     How can we help?
                   </label>
@@ -149,16 +203,21 @@ const HeroSection = () => {
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
 
-                {/* UPDATED: Form Button now matches the Hero Button style */}
+                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="group flex items-center justify-center gap-3 w-full bg-transparent border border-gray-300 py-4 rounded-full text-[15px] font-medium text-gray-900 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white cursor-pointer hover:text-white hover:scale-[1.01] active:scale-95"
+                  disabled={isSubmitting}
+                  className="group flex items-center justify-center gap-3 w-full bg-transparent border border-gray-300 py-4 rounded-full text-[15px] font-medium text-gray-900 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white cursor-pointer hover:text-white hover:scale-[1.01] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span className="tracking-tight">Send Message</span>
-                  <SendHorizontal
-                    size={16}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
+                  <span className="tracking-tight">
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </span>
+                  {!isSubmitting && (
+                    <SendHorizontal
+                      size={16}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  )}
                 </button>
               </form>
             </div>

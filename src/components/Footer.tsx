@@ -1,10 +1,48 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
+import { Instagram, Facebook, Linkedin } from "lucide-react";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!email) return;
+    setIsSubmitting(true);
+
+    const payload = {
+      formType: "Newsletter Subscription",
+      email: email,
+      timestamp: new Date().toLocaleString(),
+    };
+
+    try {
+      // Using your provided Google Apps Script Web App URL
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
+        {
+          method: "POST",
+          mode: "no-cors", // Required for Google Apps Script
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      alert("Successfully subscribed to our newsletter!");
+      setEmail("");
+    } catch (error) {
+      console.error("Subscription error:", error);
+      alert("There was an error subscribing. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const socialLinks = [
     {
       name: "instagram",
@@ -78,12 +116,18 @@ export default function Footer() {
                   <div className="relative flex-1 w-full">
                     <input
                       type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email Address"
                       className="w-full bg-zinc-900/60 border border-white/10 rounded-full px-6 md:px-8 py-4 md:py-5 focus:outline-none focus:ring-2 focus:ring-[#2F85EA]/50 transition-all placeholder:text-zinc-600 text-base md:text-lg"
                     />
                   </div>
-                  <button className="w-full sm:w-auto bg-white text-black hover:bg-linear-to-r hover:from-[#3445E7] hover:to-[#07D6F3] hover:text-white px-10 md:px-12 py-4 md:py-5 rounded-full cursor-pointer text-base md:text-lg font-medium transition-all whitespace-nowrap shadow-lg active:scale-95">
-                    Subscribe
+                  <button
+                    onClick={handleSubscribe}
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto bg-white text-black hover:bg-linear-to-r hover:from-[#3445E7] hover:to-[#07D6F3] hover:text-white px-10 md:px-12 py-4 md:py-5 rounded-full cursor-pointer text-base md:text-lg font-medium transition-all whitespace-nowrap shadow-lg active:scale-95 disabled:opacity-50"
+                  >
+                    {isSubmitting ? "Subscribing..." : "Subscribe"}
                   </button>
                 </div>
               </div>
@@ -107,7 +151,9 @@ export default function Footer() {
                           href={item.href}
                           onClick={(e) => {
                             e.preventDefault();
-                            document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+                            document
+                              .querySelector(item.href)
+                              ?.scrollIntoView({ behavior: "smooth" });
                           }}
                           className="hover:text-white transition-colors cursor-pointer"
                         >
