@@ -22,7 +22,7 @@ const HeroSection = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2F85EA]"></span>
               </div>
               <span className="text-[11px] font-bold bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent uppercase tracking-widest">
-                Available for New Projects
+                Crafting Digital Experiences
               </span>
             </div>
 

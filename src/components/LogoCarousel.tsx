@@ -4,19 +4,19 @@ import Image from "next/image";
 
 const LogoCarousel = () => {
   const projects = [
-    "1.png",
-    "2.png",
-    "3.png",
-    "4.png",
-    "5.png",
+    "1.PNG",
+    "2.PNG",
+    "3.PNG",
+    "4.PNG",
+    "5.PNG",
     "6.png",
-    "7.png",
-    "8.png",
-    "9.png",
-    "10.png",
-    "11.png",
-    "12.png",
-    "13.png",
+    "7.PNG",
+    "8.PNG",
+    "9.PNG",
+    "10.PNG",
+    "11.PNG",
+    "12.PNG",
+    "13.PNG",
   ];
 
   const displayProjects = [...projects, ...projects];
