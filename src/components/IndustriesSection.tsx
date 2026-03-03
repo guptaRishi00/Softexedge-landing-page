@@ -85,7 +85,7 @@ const IndustriesSection = () => {
           Serving 20+ Industries
         </div>
 
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#04034C] tracking-tight">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
           <span className={`${brandGradient} bg-clip-text text-transparent`}>
             Industries
           </span>{" "}

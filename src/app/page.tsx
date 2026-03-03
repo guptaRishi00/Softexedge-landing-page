@@ -12,6 +12,7 @@ import IndustriesSection from "@/components/IndustriesSection";
 import LogoCarousel from "@/components/LogoCarousel";
 import Navbar from "@/components/Navbar";
 import ProcessSection from "@/components/ProcessSection";
+import ScheduleCallSection from "@/components/ScheduleCallSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import ValuesSection from "@/components/ValuesSection";
 
@@ -26,6 +27,7 @@ export default function Home() {
       <LogoCarousel />
       <IndustriesSection />
       <TestimonialSection />
+      <ScheduleCallSection />
       <FAQSection />
       <Footer />
       {/* <ProcessSection />

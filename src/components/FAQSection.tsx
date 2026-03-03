@@ -45,7 +45,7 @@ const FAQSection = () => {
               Support
             </span>
           </div>
-          <h2 className="text-4xl lg:text-6xl font-black text-[#04034C] tracking-tighter leading-tight">
+          <h2 className="text-4xl lg:text-6xl font-black text-gray-900 tracking-tighter leading-tight">
             Common <br className="hidden lg:block" />
             <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
               Questions.
@@ -85,7 +85,7 @@ const FAQSection = () => {
 
                     <h3
                       className={`text-xl lg:text-2xl font-bold transition-all duration-300 ${
-                        isOpen ? "text-[#04034C]" : "text-[#04034C]/70"
+                        isOpen ? "text-gray-900" : "text-gray-500"
                       }`}
                     >
                       {faq.question}
@@ -135,8 +135,8 @@ const FAQSection = () => {
           <p className="text-white font-medium text-lg text-center lg:text-left">
             Still have more questions about your project?
           </p>
-          <button className="px-8 py-4 bg-white text-[#04034C] rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white transition-all duration-300">
-            Contact Support
+          <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white cursor-pointer">
+            Schedule a call
           </button>
         </div>
       </div>

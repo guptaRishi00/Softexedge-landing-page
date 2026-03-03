@@ -85,7 +85,7 @@ export default function TestimonialSection() {
         </div>
 
         {/* Heading */}
-        <h2 className="text-5xl md:text-6xl font-bold text-[#04034C] mb-4 tracking-tighter">
+        <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tighter">
           <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
             100+
           </span>{" "}
@@ -122,7 +122,7 @@ export default function TestimonialSection() {
                     />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#04034C] leading-tight">
+                    <h4 className="text-sm font-bold text-gray-900 leading-tight">
                       {item.author}
                     </h4>
                     <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mt-0.5">

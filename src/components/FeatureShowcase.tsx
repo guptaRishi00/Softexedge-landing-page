@@ -43,7 +43,7 @@ const FeatureShowcase = () => {
           </h3>
 
           <button
-            className={`relative z-10 bg-white text-[#04034C] hover:text-white hover:${primaryGradient} rounded-full px-6 py-2.5 text-sm font-semibold flex items-center gap-2 cursor-pointer`}
+            className={`relative z-10 bg-white text-gray-900 hover:text-white hover:${primaryGradient} rounded-full px-6 py-2.5 text-sm font-semibold flex items-center gap-2 cursor-pointer`}
           >
             Start a Project <ArrowRight className="w-4 h-4" />
           </button>
@@ -75,12 +75,12 @@ const FeatureShowcase = () => {
             {features.map((feature) => (
               <div key={feature.id} className="space-y-4 group">
                 {/* Icon Container - Small & Minimal */}
-                <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-[#04034C] transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-[#3445E7] group-hover:to-[#07D6F3] group-hover:text-white">
+                <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center transition-all duration-300 bg-gradient-to-br from-[#3445E7] to-[#07D6F3] text-white">
                   {feature.icon}
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-[#04034C]">
+                  <h3 className="text-lg font-bold text-gray-900">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-gray-500 leading-relaxed">
