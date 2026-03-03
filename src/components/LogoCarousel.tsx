@@ -27,7 +27,7 @@ const LogoCarousel = () => {
       {/* Reduced bottom margin from mb-16 to mb-10 */}
       <div className="px-6 lg:px-16 mb-10">
         <p className="text-[#2F85EA] font-bold uppercase tracking-[0.2em] text-xs mb-3">
-          Our Portfolio
+          Our Projects
         </p>
       </div>
 

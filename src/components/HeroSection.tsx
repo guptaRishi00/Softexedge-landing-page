@@ -45,7 +45,7 @@ const HeroSection = () => {
           <div className="pt-2">
             <Link
               href="/services"
-              className="group inline-flex items-center gap-3 bg-transparent border-2 border-gray-900 px-8 py-4 rounded-full text-[15px] font-bold text-gray-900  hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white hover:text-white hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-900/5"
+              className="group inline-flex items-center gap-3 bg-transparent border border-gray-300 px-8 py-4 rounded-full text-[15px] font-medium text-gray-900  hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white hover:text-white hover:scale-[1.02] active:scale-95"
             >
               <span>View our services</span>
               <MoveRight
@@ -150,7 +150,7 @@ const HeroSection = () => {
                 {/* UPDATED: Form Button now matches the Hero Button style */}
                 <button
                   type="submit"
-                  className="group flex items-center justify-center gap-3 w-full bg-transparent border-2 border-gray-900 py-4 rounded-full text-[15px] font-bold text-gray-900 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white cursor-pointer hover:text-white hover:scale-[1.01] active:scale-95"
+                  className="group flex items-center justify-center gap-3 w-full bg-transparent border border-gray-300 py-4 rounded-full text-[15px] font-medium text-gray-900 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white cursor-pointer hover:text-white hover:scale-[1.01] active:scale-95"
                 >
                   <span className="tracking-tight">Send Message</span>
                   <SendHorizontal
