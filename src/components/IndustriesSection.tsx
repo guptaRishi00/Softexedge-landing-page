@@ -70,7 +70,11 @@ const ScrollingRow = ({ items, direction = 1, speed = 40 }: any) => {
   );
 };
 
-const IndustriesSection = () => {
+interface IndustriesSectionProps {
+  onOpenPopup: () => void;
+}
+
+const IndustriesSection = ({ onOpenPopup }: IndustriesSectionProps) => {
   const row1 = industries.slice(0, 8);
   const row2 = industries.slice(8, 16);
   const row3 = industries.slice(16, 24);
@@ -79,7 +83,7 @@ const IndustriesSection = () => {
     "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
 
   return (
-    <section className="w-full py-20 lg:py-28 bg-[#FDFCF8] overflow-hidden flex flex-col items-center">
+    <section id="industries" className="w-full py-20 lg:py-28 bg-[#FDFCF8] overflow-hidden flex flex-col items-center">
       <div className="text-center max-w-2xl px-6 lg:px-16 mb-14 space-y-4">
         <div className="inline-block px-4 py-1.5 rounded-full border border-blue-200/50 bg-blue-50/30 text-[10px] font-bold uppercase tracking-widest text-[#3445E7]/70 shadow-sm">
           Serving 20+ Industries
@@ -105,6 +109,7 @@ const IndustriesSection = () => {
       </div>
 
       <button
+        onClick={onOpenPopup}
         className={`${brandGradient} hover:brightness-110 active:scale-95 text-white font-semibold px-8 py-3 rounded-full cursor-pointer transition-all duration-300 text-sm `}
       >
         Get a Free Quote

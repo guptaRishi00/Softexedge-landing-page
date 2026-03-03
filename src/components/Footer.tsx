@@ -6,10 +6,21 @@ import { Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
 
 export default function Footer() {
   const socialLinks = [
-    { name: "instagram", href: "https://instagram.com", Icon: Instagram },
-    { name: "facebook", href: "https://facebook.com", Icon: Facebook },
-    { name: "linkedin", href: "https://linkedin.com", Icon: Linkedin },
-    { name: "x", href: "https://x.com", Icon: Twitter },
+    {
+      name: "instagram",
+      href: "https://www.instagram.com/softexedge/",
+      Icon: Instagram,
+    },
+    {
+      name: "facebook",
+      href: "https://www.facebook.com/share/1AcNcxaqrX/?mibextid=wwXIfr",
+      Icon: Facebook,
+    },
+    {
+      name: "linkedin",
+      href: "https://www.linkedin.com/company/softexedge/posts/?feedView=all",
+      Icon: Linkedin,
+    },
   ];
 
   return (
@@ -23,7 +34,7 @@ export default function Footer() {
               <div className="space-y-8 md:space-y-20">
                 <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[84px] font-bold leading-[1.1] lg:leading-[1] tracking-tight">
                   Designing <br /> Brands <br />
-                  <span className="bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
                     People Trust
                   </span>
                 </h2>
@@ -51,8 +62,8 @@ export default function Footer() {
               </div>
 
               <p className="text-zinc-300 text-lg lg:mt-10 md:text-xl lg:text-2xl max-w-sm leading-relaxed font-medium pt-8 lg:pt-0">
-                Designing Brands That <br className="hidden sm:block" /> People
-                Trust And Choose
+                Brands built on trust, <br className="hidden sm:block" /> chosen
+                by people.
               </p>
             </div>
 
@@ -71,7 +82,7 @@ export default function Footer() {
                       className="w-full bg-zinc-900/60 border border-white/10 rounded-full px-6 md:px-8 py-4 md:py-5 focus:outline-none focus:ring-2 focus:ring-[#2F85EA]/50 transition-all placeholder:text-zinc-600 text-base md:text-lg"
                     />
                   </div>
-                  <button className="w-full sm:w-auto bg-white text-black hover:bg-gradient-to-r hover:from-[#3445E7] hover:to-[#07D6F3] hover:text-white px-10 md:px-12 py-4 md:py-5 rounded-full cursor-pointer text-base md:text-lg font-bold transition-all whitespace-nowrap shadow-lg active:scale-95">
+                  <button className="w-full sm:w-auto bg-white text-black hover:bg-linear-to-r hover:from-[#3445E7] hover:to-[#07D6F3] hover:text-white px-10 md:px-12 py-4 md:py-5 rounded-full cursor-pointer text-base md:text-lg font-medium transition-all whitespace-nowrap shadow-lg active:scale-95">
                     Subscribe
                   </button>
                 </div>
@@ -84,40 +95,24 @@ export default function Footer() {
                     Company
                   </h4>
                   <ul className="space-y-4 md:space-y-5 text-zinc-400 text-base md:text-lg">
-                    {["Home", "About Us", "Services", "Contact", "Career"].map(
-                      (item) => (
-                        <li key={item}>
-                          <Link
-                            href="#"
-                            className="hover:text-white transition-colors"
-                          >
-                            {item}
-                          </Link>
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                </div>
-
-                <div className="space-y-6 md:space-y-8">
-                  <h4 className="text-white text-lg md:text-xl font-bold">
-                    Services
-                  </h4>
-                  <ul className="space-y-4 md:space-y-5 text-zinc-400 text-base md:text-lg">
                     {[
-                      "Branding",
-                      "UI/UX Design",
-                      "Digital Marketing",
-                      "Video",
-                      "Development",
+                      { label: "Home", href: "#hero" },
+                      { label: "About Us", href: "#about" },
+                      { label: "Services", href: "#services" },
+                      { label: "Contact", href: "#contact" },
+                      { label: "Industries", href: "#industries" },
                     ].map((item) => (
-                      <li key={item}>
-                        <Link
-                          href="#"
-                          className="hover:text-white transition-colors"
+                      <li key={item.label}>
+                        <a
+                          href={item.href}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+                          }}
+                          className="hover:text-white transition-colors cursor-pointer"
                         >
-                          {item}
-                        </Link>
+                          {item.label}
+                        </a>
                       </li>
                     ))}
                   </ul>

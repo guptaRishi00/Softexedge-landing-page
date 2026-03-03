@@ -9,7 +9,7 @@ const HeroSection = () => {
   const [service, setService] = useState("");
 
   return (
-    <section className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-0 mt-20">
+    <section id="hero" className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-0 mt-20">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/30 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-310 mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
@@ -43,16 +43,19 @@ const HeroSection = () => {
           </p>
 
           <div className="pt-2">
-            <Link
-              href="/services"
-              className="group inline-flex items-center gap-3 bg-transparent border border-gray-300 px-8 py-4 rounded-full text-[15px] font-medium text-gray-900  hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white hover:text-white hover:scale-[1.02] active:scale-95"
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group inline-flex items-center gap-3 bg-transparent cursor-pointer border border-gray-300 px-8 py-4 rounded-full text-[15px] font-medium text-gray-900  hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white hover:text-white hover:scale-[1.02] active:scale-95"
             >
               <span>View our services</span>
               <MoveRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"
               />
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -134,11 +137,10 @@ const HeroSection = () => {
 
                   <label
                     className={`absolute left-0 pointer-events-none transition-all duration-300 
-                    ${
-                      service
+                    ${service
                         ? "-top-5 text-[11px] text-[#2F85EA] font-bold"
                         : "top-2.5 text-gray-400 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
-                    }`}
+                      }`}
                   >
                     How can we help?
                   </label>

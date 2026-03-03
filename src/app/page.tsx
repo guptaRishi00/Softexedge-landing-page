@@ -1,41 +1,40 @@
-import AdvantageSection from "@/components/AdvantageSection";
-import BentoFeatures from "@/components/BentoFeatures";
+"use client";
+
+import { useState } from "react";
 import Brands from "@/components/Brands";
 import CardCarousel from "@/components/CardCarousel";
-import ClientTestimonials from "@/components/ClientTestimonials";
+import ContactFormPopup from "@/components/ContactFormPopup";
 import FAQSection from "@/components/FAQSection";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import ImpactSection from "@/components/ImpactSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import LogoCarousel from "@/components/LogoCarousel";
 import Navbar from "@/components/Navbar";
-import ProcessSection from "@/components/ProcessSection";
 import ScheduleCallSection from "@/components/ScheduleCallSection";
 import TestimonialSection from "@/components/TestimonialSection";
-import ValuesSection from "@/components/ValuesSection";
 
 export default function Home() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const openPopup = () => setIsPopupOpen(true);
+
   return (
     <div className="">
-      <Navbar />
+      <Navbar onOpenPopup={openPopup} />
       <HeroSection />
       <Brands />
-      <CardCarousel />
-      <FeatureShowcase />
+      <CardCarousel onOpenPopup={openPopup} />
+      <FeatureShowcase onOpenPopup={openPopup} />
       <LogoCarousel />
-      <IndustriesSection />
+      <IndustriesSection onOpenPopup={openPopup} />
       <TestimonialSection />
-      <ScheduleCallSection />
-      <FAQSection />
+      <ScheduleCallSection onOpenPopup={openPopup} />
+      <FAQSection onOpenPopup={openPopup} />
       <Footer />
-      {/* <ProcessSection />
-      <AdvantageSection />
-      <ImpactSection />
-      <ClientTestimonials />
-      <FAQSection />
-      <Footer /> */}
+      <ContactFormPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }

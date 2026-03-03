@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 interface Testimonial {
@@ -46,7 +46,6 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-// Array of distinct avatar images for the header
 const headerAvatars = [
   "/casino.png",
   "/neuralinq.png",
@@ -55,10 +54,42 @@ const headerAvatars = [
 ];
 
 export default function TestimonialSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-scroll logic for mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.innerWidth < 768 && scrollRef.current) {
+        const nextIndex = (activeIndex + 1) % testimonials.length;
+        const scrollAmount = scrollRef.current.offsetWidth * 0.85 + 24; // Card width + gap
+
+        scrollRef.current.scrollTo({
+          left: nextIndex * scrollAmount,
+          behavior: "smooth",
+        });
+        setActiveIndex(nextIndex);
+      }
+    }, 3000); // Moves every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+
   return (
-    <section className="bg-[#F3F4F6] py-20 lg:py-28 px-6 lg:px-16 font-sans">
+    <section id="about" className="bg-[#F3F4F6] py-20 lg:py-28 px-6 lg:px-16 font-sans overflow-hidden">
+      {/* Inline style to hide scrollbar globally for this component */}
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto text-center">
-        {/* Top Avatar Group with Distinct Images */}
+        {/* Header Section */}
         <div className="flex justify-center -space-x-3 mb-6">
           {headerAvatars.map((src, i) => (
             <div
@@ -69,18 +100,13 @@ export default function TestimonialSection() {
                 src={src}
                 width={48}
                 height={48}
-                alt={`Client ${i + 1}`}
+                alt="Client"
                 className="w-full h-full object-cover"
               />
             </div>
           ))}
-          {/* Optional "plus" indicator for extra flair */}
-          <div className="w-12 h-12 rounded-full border-[3px] border-white overflow-hidden bg-[#04034C] flex items-center justify-center shadow-sm">
-            <span className="text-[10px] font-bold text-white">+100</span>
-          </div>
         </div>
 
-        {/* Heading */}
         <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tighter">
           <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
             100+
@@ -91,15 +117,17 @@ export default function TestimonialSection() {
           Trusted by businesses worldwide for high-performance web development
         </p>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Carousel / Grid Container */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-6 pb-10 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible"
+        >
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-3xl  flex flex-col justify-between text-left transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2 border border-transparent hover:border-blue-100/50"
+              className="min-w-[85vw] md:min-w-0 snap-center bg-white p-8 rounded-3xl flex flex-col justify-between text-left transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-2 border border-transparent hover:border-blue-100/50"
             >
               <div className="mb-8">
-                {/* Visual Quote Icon for style */}
                 <span className="text-4xl font-serif text-blue-100 block h-6 leading-none select-none">
                   “
                 </span>
@@ -126,7 +154,6 @@ export default function TestimonialSection() {
                     </p>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-1 bg-amber-50/60 px-2 py-1 rounded-lg border border-amber-100/50">
                   <span className="text-[11px] font-bold text-amber-700">
                     {item.rating}
@@ -135,6 +162,16 @@ export default function TestimonialSection() {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Mobile-only Indicators (Visual Dots) */}
+        <div className="flex justify-center gap-2 mt-4 md:hidden">
+          {testimonials.map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === i ? "w-6 bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]" : "w-1.5 bg-gray-300"}`}
+            />
           ))}
         </div>
       </div>

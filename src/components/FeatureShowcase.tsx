@@ -2,7 +2,11 @@
 
 import { Smartphone, Zap, Search, ArrowRight } from "lucide-react";
 
-const FeatureShowcase = () => {
+interface FeatureShowcaseProps {
+  onOpenPopup: () => void;
+}
+
+const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
   const features = [
     {
       id: 1,
@@ -43,6 +47,7 @@ const FeatureShowcase = () => {
           </h3>
 
           <button
+            onClick={onOpenPopup}
             className={`relative z-10 bg-white text-gray-900 hover:text-white hover:${primaryGradient} rounded-full px-6 py-2.5 text-sm font-semibold flex items-center gap-2 cursor-pointer`}
           >
             Start a Project <ArrowRight className="w-4 h-4" />

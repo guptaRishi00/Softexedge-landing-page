@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   ShoppingBag,
   Code2,
@@ -11,7 +11,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const CardCarousel = () => {
+interface CardCarouselProps {
+  onOpenPopup: () => void;
+}
+
+const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
   const cards = [
     {
       id: 1,
@@ -60,9 +64,15 @@ const CardCarousel = () => {
   const gradientText =
     "bg-clip-text text-transparent bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
 
-  // --- Responsive Logic ---
+  // --- State & Refs ---
   const [itemsToShow, setItemsToShow] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const touchStart = useRef<number | null>(null);
+  const touchEnd = useRef<number | null>(null);
+  const totalCards = cards.length;
 
+  // --- Responsive Logic ---
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1280) setItemsToShow(3);
@@ -74,18 +84,18 @@ const CardCarousel = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prepare extended cards for infinite loop
+  // Sync index with itemsToShow to prevent layout shifts on resize
+  useEffect(() => {
+    setCurrentIndex(itemsToShow);
+  }, [itemsToShow]);
+
   const extendedCards = [
     ...cards.slice(-itemsToShow),
     ...cards,
     ...cards.slice(0, itemsToShow),
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(itemsToShow);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const totalCards = cards.length;
-
-  // --- Infinite Loop Logic ---
+  // --- Navigation Logic ---
   const handleTransitionEnd = useCallback(() => {
     if (currentIndex >= totalCards + itemsToShow) {
       setIsTransitioning(false);
@@ -98,7 +108,6 @@ const CardCarousel = () => {
 
   useEffect(() => {
     if (!isTransitioning) {
-      // Small delay to allow the jump to happen before re-enabling transition
       const raf = requestAnimationFrame(() => {
         setIsTransitioning(true);
       });
@@ -106,15 +115,41 @@ const CardCarousel = () => {
     }
   }, [isTransitioning]);
 
+  // Auto-play
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex]);
+
+  // --- Swipe Logic for Mobile ---
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEnd.current = null;
+    touchStart.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEnd.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart.current || !touchEnd.current) return;
+    const distance = touchStart.current - touchEnd.current;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      setCurrentIndex((prev) => prev + 1);
+    } else if (isRightSwipe) {
+      setCurrentIndex((prev) => prev - 1);
+    }
+  };
 
   return (
-    <section className="py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-white overflow-hidden">
+    <section id="services" className="py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 lg:mb-14 px-2 gap-8">
@@ -127,7 +162,7 @@ const CardCarousel = () => {
             </p>
           </div>
 
-          {/* Indicators / Pagination */}
+          {/* Indicators */}
           <div className="flex gap-2 pb-2">
             {cards.map((_, index) => {
               const normalizedIndex =
@@ -136,11 +171,10 @@ const CardCarousel = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index + itemsToShow)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    normalizedIndex === index
-                      ? "w-8 sm:w-12 bg-gradient-to-r from-[#3445E7] to-[#07D6F3]"
-                      : "w-2 sm:w-3 bg-gray-200 hover:bg-gray-300"
-                  }`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${normalizedIndex === index
+                    ? "w-8 sm:w-12 bg-gradient-to-r from-[#3445E7] to-[#07D6F3]"
+                    : "w-2 sm:w-3 bg-gray-200 hover:bg-gray-300"
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               );
@@ -149,7 +183,12 @@ const CardCarousel = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div
+          className="relative touch-pan-y" // touch-pan-y allows vertical scrolling while swiping horizontally
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <div
             className={`flex ${isTransitioning ? "transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" : "transition-none"}`}
             style={{
@@ -182,7 +221,7 @@ const CardCarousel = () => {
                   </div>
 
                   <div className="relative z-10 flex items-center justify-between">
-                    <button className="group/btn flex items-center gap-3 rounded-full border border-gray-200 bg-white py-1.5 pl-4 pr-1.5 transition-all duration-300 hover:bg-blue-600 hover:border-blue-600">
+                    <button onClick={onOpenPopup} className="group/btn flex items-center gap-3 rounded-full border border-gray-200 bg-white py-1.5 pl-4 pr-1.5 transition-all duration-300 hover:bg-blue-600 hover:border-blue-600">
                       <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 group-hover/btn:text-white">
                         Learn More
                       </span>

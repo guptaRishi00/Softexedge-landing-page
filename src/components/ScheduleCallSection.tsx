@@ -17,7 +17,11 @@ const AvatarGroup = ({ avatars }: { avatars: string[] }) => (
   </div>
 );
 
-const ScheduleCallSection = () => {
+interface ScheduleCallSectionProps {
+  onOpenPopup: () => void;
+}
+
+const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
   const brandGradient =
     "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
 
@@ -29,7 +33,7 @@ const ScheduleCallSection = () => {
   ];
 
   return (
-    <section className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#FDFCF8] px-4 sm:px-8 lg:px-20 overflow-hidden font-sans">
+    <section id="contact" className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#FDFCF8] px-4 sm:px-8 lg:px-20 overflow-hidden font-sans">
       {/* Structural Background Lines - Hidden on very small screens to avoid clutter */}
       <div className="absolute inset-0 pointer-events-none opacity-40 select-none">
         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-300" />
@@ -93,16 +97,17 @@ const ScheduleCallSection = () => {
 
               {/* Action Buttons inside Frame - Adjusted for mobile visibility */}
               <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row gap-3 sm:gap-4 w-[85%] sm:w-max items-center">
-                <button className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white text-gray-900 px-5 sm:px-6 py-3 rounded-full font-bold text-[12px] sm:text-[13px] shadow-lg hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white transition-all cursor-pointer whitespace-nowrap">
+                <button onClick={onOpenPopup} className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white text-gray-900 px-5 sm:px-6 py-3 rounded-full font-medium text-[12px] sm:text-[13px] shadow-lg hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white cursor-pointer whitespace-nowrap">
                   <CalendarDays
                     size={16}
-                    className="text-[#2F85EA] group-hover:text-white transition-colors"
+                    className="text-gray-900 group-hover:text-white "
                   />
                   Schedule A Call
                 </button>
 
                 <button
-                  className={`w-full sm:w-auto ${brandGradient} text-white px-5 sm:px-6 py-3 rounded-full font-bold text-[12px] sm:text-[13px] shadow-lg hover:opacity-90 transition-all cursor-pointer whitespace-nowrap`}
+                  onClick={onOpenPopup}
+                  className={`w-full sm:w-auto ${brandGradient} text-white px-5 sm:px-6 py-3 rounded-full font-medium text-[12px] sm:text-[13px] shadow-lg hover:opacity-90 cursor-pointer whitespace-nowrap`}
                 >
                   Get In Touch
                 </button>
@@ -144,7 +149,7 @@ const ScheduleCallSection = () => {
         </div>
 
         {/* Duplicate Mobile Bottom Buttons (Matches your original structure) */}
-        <div className="flex flex-col gap-3 mt-10 lg:hidden px-2">
+        {/* <div className="flex flex-col gap-3 mt-10 lg:hidden px-2">
           <button className="flex items-center justify-center gap-2 border-2 border-gray-900 px-8 py-4 rounded-full font-bold text-gray-900 active:bg-gray-100 transition-colors">
             Schedule A Call
           </button>
@@ -153,7 +158,7 @@ const ScheduleCallSection = () => {
           >
             Get In Touch
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

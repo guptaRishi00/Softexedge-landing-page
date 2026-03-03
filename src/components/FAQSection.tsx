@@ -4,7 +4,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
-const FAQSection = () => {
+interface FAQSectionProps {
+  onOpenPopup: () => void;
+}
+
+const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -61,11 +65,10 @@ const FAQSection = () => {
             return (
               <div
                 key={faq.id}
-                className={`group transition-all duration-500 rounded-[24px] ${
-                  isOpen
+                className={`group transition-all duration-500 rounded-[24px] ${isOpen
                     ? "bg-gray-50/50 p-6 lg:p-8"
                     : "bg-transparent p-6 lg:p-8  rounded-none hover:bg-gray-50/30"
-                }`}
+                  }`}
               >
                 <button
                   className="flex items-start justify-between w-full text-left gap-6"
@@ -75,18 +78,16 @@ const FAQSection = () => {
                     {/* Active Gradient Indicator */}
                     <div className="mt-2 hidden lg:block">
                       <div
-                        className={`w-1 h-8 rounded-full transition-all duration-500 ${
-                          isOpen
+                        className={`w-1 h-8 rounded-full transition-all duration-500 ${isOpen
                             ? "bg-linear-to-b from-[#3445E7] to-[#07D6F3] scale-y-100"
                             : "bg-gray-200 scale-y-50 opacity-0"
-                        }`}
+                          }`}
                       />
                     </div>
 
                     <h3
-                      className={`text-xl lg:text-2xl font-bold transition-all duration-300 ${
-                        isOpen ? "text-gray-900" : "text-gray-500"
-                      }`}
+                      className={`text-xl lg:text-2xl font-bold transition-all duration-300 ${isOpen ? "text-gray-900" : "text-gray-500"
+                        }`}
                     >
                       {faq.question}
                     </h3>
@@ -97,11 +98,10 @@ const FAQSection = () => {
                     <motion.div
                       animate={{ rotate: isOpen ? 45 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className={`flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full border transition-colors ${
-                        isOpen
+                      className={`flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full border transition-colors ${isOpen
                           ? "bg-[#04034C] border-[#04034C] text-white"
                           : "border-gray-200 text-gray-400 group-hover:border-gray-400 group-hover:text-gray-600"
-                      }`}
+                        }`}
                     >
                       <Plus size={20} strokeWidth={2.5} />
                     </motion.div>
@@ -142,7 +142,7 @@ const FAQSection = () => {
               Still have more questions about your project?
             </p>
 
-            <button className="relative z-10 px-8 py-4 border text-gray-900 hover:border-white border-gray-900 hover:text-white rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] cursor-pointer active:scale-95">
+            <button onClick={onOpenPopup} className="relative z-10 px-8 py-4 border text-gray-900 hover:border-white border-gray-900 hover:text-white rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] cursor-pointer active:scale-95">
               Schedule a call
             </button>
           </div>

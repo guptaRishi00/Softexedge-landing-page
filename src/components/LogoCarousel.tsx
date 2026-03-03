@@ -39,7 +39,7 @@ const LogoCarousel = () => {
               // Reduced horizontal gap from px-3/5 to px-1.5/2.5
               className="flex w-[220px] md:w-[280px] items-center justify-center px-1.5 md:px-2.5"
             >
-              <div className="relative w-full aspect-[9/19] overflow-hidden rounded-[10px] md:rounded-[12px] border border-gray-100 shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-700 hover:scale-[1.03] hover:shadow-blue-500/10">
+              <div className="relative w-full aspect-[10/19] overflow-hidden rounded-[10px] md:rounded-[12px] border border-gray-100 shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-700 hover:scale-[1.03] hover:shadow-blue-500/10">
                 <Image
                   src={`/${src}`}
                   alt={`Project Screenshot ${index}`}
@@ -54,8 +54,6 @@ const LogoCarousel = () => {
         </div>
 
         {/* Adjusted fade width to match the tighter layout */}
-        <div className="absolute inset-y-0 left-0 w-16 bg-linear-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-16 bg-linear-to-l from-white to-transparent z-10 pointer-events-none" />
       </div>
 
       <style jsx>{`
