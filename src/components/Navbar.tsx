@@ -26,18 +26,21 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
-        ? "py-3 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
-        : "py-6 bg-transparent"
-        }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "py-3 bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+          : "py-6 bg-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 flex justify-between items-center">
+      <div className="max-w-343 mx-auto px-6 lg:px-16 flex justify-between items-center">
         {/* LEFT: Logo */}
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
-            document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+            document
+              .getElementById("hero")
+              ?.scrollIntoView({ behavior: "smooth" });
           }}
           className="transition-opacity cursor-pointer"
         >

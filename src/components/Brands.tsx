@@ -30,6 +30,31 @@ const Brands = () => {
       src: "/threadify.png",
       alt: "Microsoft",
     },
+    {
+      src: "/bloomvest.png",
+      alt: "Bloomvest",
+    },
+    {
+      src: "/casinoscan.png",
+      alt: "Bloomvest",
+    },
+
+    {
+      src: "/trend.png",
+      alt: "Bloomvest",
+    },
+    {
+      src: "/triti.png",
+      alt: "Bloomvest",
+    },
+    {
+      src: "/twin.png",
+      alt: "Bloomvest",
+    },
+    {
+      src: "/valpem.png",
+      alt: "Bloomvest",
+    },
   ];
 
   return (
