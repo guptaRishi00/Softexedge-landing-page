@@ -74,7 +74,7 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
             className={`
               ${buttonBase} 
               /* Mobile Styles: Gradient active */
-              text-white border-transparent bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]
+              text-white border-white bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]
               /* Desktop Styles: Revert to idle (outlined) */
               md:text-gray-700 md:border-gray-300 md:bg-none md:bg-transparent
               /* Shared Hover effect */
