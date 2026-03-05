@@ -41,7 +41,7 @@ const LogoCarousel = () => {
             >
               <div className="relative w-full aspect-[10/19] overflow-hidden rounded-[10px] md:rounded-[12px] border border-gray-100 shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-700 hover:scale-[1.03] hover:shadow-blue-500/10">
                 <Image
-                  src={`/${src}`}
+                  src={`/web/${src}`}
                   alt={`Project Screenshot ${index}`}
                   fill
                   className=""

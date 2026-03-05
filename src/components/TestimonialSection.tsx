@@ -17,7 +17,7 @@ const testimonials: Testimonial[] = [
       "SoftEXedge built us a custom Shopify store that completely transformed our online sales. Within the first month, our conversion rate jumped by 40% and the site loads faster than ever.",
     author: "Nitin Pamnani",
     role: "Authentica",
-    image: "/authentica.png",
+    image: "/web/authentica.png",
     rating: "4.5",
   },
   {
@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
       "Our WordPress website was outdated and slow. SoftEXedge redesigned it from the ground up — it’s now mobile-first, blazing fast, and our organic traffic has doubled in three months.",
     author: "Suchita A Mukerji",
     role: "Neuralinq",
-    image: "/neuralinq.png",
+    image: "/web/neuralinq.png",
     rating: "4.7",
   },
   {
@@ -33,7 +33,7 @@ const testimonials: Testimonial[] = [
       "We needed a custom web application for our gifting platform, and SoftEXedge delivered beyond expectations. The checkout flow they built contributed to a 35% revenue increase during our peak season.",
     author: "Varun Todi",
     role: "Bloomvest",
-    image: "/bloomvest.svg",
+    image: "/web/bloomvest.svg",
     rating: "4.8",
   },
   {
@@ -41,16 +41,16 @@ const testimonials: Testimonial[] = [
       "SoftEXedge revamped our e-commerce product pages with a focus on speed and UX. Their ability to blend design with performance truly transformed our online store and boosted our sales.",
     author: "Sachin Darbarwar",
     role: "Casino Scan",
-    image: "/casino.png",
+    image: "/web/casino.png",
     rating: "4.9",
   },
 ];
 
 const headerAvatars = [
-  "/casino.png",
-  "/neuralinq.png",
-  "/authentica.png",
-  "/bloomvest.svg",
+  "/web/casino.png",
+  "/web/neuralinq.png",
+  "/web/authentica.png",
+  "/web/bloomvest.svg",
 ];
 
 export default function TestimonialSection() {
