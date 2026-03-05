@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: "/web", // CRITICAL: This ensures CSS/JS load from softexedge.com/web/...
+  basePath: "/web",
+  assetPrefix: "/web", // Add this line
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com", pathname: "**" },
