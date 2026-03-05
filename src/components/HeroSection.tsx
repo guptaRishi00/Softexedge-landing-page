@@ -72,12 +72,11 @@ const HeroSection = () => {
 
             {/* UPDATED TITLE SECTION */}
             <h1 className="text-4xl md:text-6xl lg:text-[55px] leading-[1.1] font-extrabold text-gray-900 tracking-tighter">
-              Get professional website <br className="hidden md:block" />
-              within{" "}
+              Get a professional website <br className="hidden md:block" />{" "}
               <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
-                7days
+                within 7days
               </span>{" "}
-              @ less than{" "}
+              at less than{" "}
               <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
                 35K
               </span>
@@ -224,9 +223,9 @@ const HeroSection = () => {
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
                   >
                     <option value="" disabled hidden></option>
-                    <option value="crm">CRM Implementation</option>
-                    <option value="software">Custom Software</option>
-                    <option value="webapp">Web Application</option>
+                    <option value="crm">Shopify Development</option>
+                    <option value="software">Website Development</option>
+                    <option value="webapp">Wordpress Development</option>
                   </select>
 
                   <label
