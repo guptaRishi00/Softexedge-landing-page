@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   title: "SoftEXedge",
   description: "Crafting Digital Experiences",
   icons: {
-    icon: "/icon.png",
+    icon: "/web/icon.png",
   },
 };
 
