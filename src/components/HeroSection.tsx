@@ -71,13 +71,13 @@ const HeroSection = () => {
             </div>
 
             {/* UPDATED TITLE SECTION */}
-            <h1 className="text-4xl md:text-6xl lg:text-[55px] leading-[1.1] font-extrabold text-gray-900 tracking-tighter">
+            <h1 className="text-4xl md:text-6xl lg:text-[50px] leading-[1.1] font-extrabold text-gray-900 tracking-tighter">
               Get a professional website <br className="hidden md:block" />{" "}
-              <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
-                within 7days
+              <span className="inline-block bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent pr-2">
+                within 7 days
               </span>{" "}
               at less than{" "}
-              <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
+              <span className="inline-block bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent pr-2">
                 35K
               </span>
             </h1>
