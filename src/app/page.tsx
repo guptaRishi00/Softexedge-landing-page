@@ -22,10 +22,10 @@ export default function Home() {
     <div className="">
       <Navbar onOpenPopup={openPopup} />
       <HeroSection />
+      <LogoCarousel />
       <Brands />
       <CardCarousel onOpenPopup={openPopup} />
       <FeatureShowcase onOpenPopup={openPopup} />
-      <LogoCarousel />
       <IndustriesSection onOpenPopup={openPopup} />
       <TestimonialSection />
       <ScheduleCallSection onOpenPopup={openPopup} />

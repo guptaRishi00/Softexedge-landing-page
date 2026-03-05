@@ -76,7 +76,10 @@ export default function TestimonialSection() {
   }, [activeIndex]);
 
   return (
-    <section id="about" className="bg-[#F3F4F6] py-20 lg:py-28 px-6 lg:px-16 font-sans overflow-hidden">
+    <section
+      id="about"
+      className="bg-[#F3F4F6] py-20 lg:py-28 px-6 lg:px-16 font-sans overflow-hidden"
+    >
       {/* Inline style to hide scrollbar globally for this component */}
       <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {

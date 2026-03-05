@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import { SendHorizontal, X } from "lucide-react";
@@ -11,6 +12,7 @@ interface ContactFormPopupProps {
 }
 
 const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
+  const router = useRouter();
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -66,10 +68,10 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
           headers: { "Content-Type": "application/json" },
         },
       );
-      alert("Thank you! We will get back to you shortly.");
       onClose();
       (e.target as HTMLFormElement).reset();
       setService("");
+      router.push("/thank-you");
     } catch (error) {
       console.error("Submission error:", error);
       alert("Error sending message. Please try again.");

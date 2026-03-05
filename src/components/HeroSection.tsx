@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { MoveRight, SendHorizontal } from "lucide-react";
 
 const HeroSection = () => {
+  const router = useRouter();
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -24,12 +26,11 @@ const HeroSection = () => {
     };
 
     try {
-      // Using the Google Apps Script Web App URL provided
       await fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
           method: "POST",
-          mode: "no-cors", // Required for Google Apps Script web apps
+          mode: "no-cors",
           body: JSON.stringify(payload),
           headers: {
             "Content-Type": "application/json",
@@ -37,9 +38,9 @@ const HeroSection = () => {
         },
       );
 
-      alert("Message sent successfully! We will get back to you soon.");
       (e.target as HTMLFormElement).reset();
       setService("");
+      router.push("/thank-you");
     } catch (error) {
       console.error("Submission error:", error);
       alert("There was an error sending your message. Please try again.");
@@ -69,21 +70,66 @@ const HeroSection = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-[68px] leading-[0.95] font-extrabold text-gray-900 tracking-tighter">
-              Building Websites <br />
+            {/* UPDATED TITLE SECTION */}
+            <h1 className="text-4xl md:text-6xl lg:text-[55px] leading-[1.1] font-extrabold text-gray-900 tracking-tighter">
+              Get professional website <br className="hidden md:block" />
+              within{" "}
               <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
-                That Convert
+                7days
+              </span>{" "}
+              @ less than{" "}
+              <span className="bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent">
+                35K
               </span>
             </h1>
           </div>
 
-          <p className="text-base md:text-lg text-gray-400 max-w-md leading-relaxed font-medium">
+          <p className="text-base md:text-lg text-gray-900 max-w-md leading-relaxed font-medium">
             We build high-performance websites on{" "}
-            <span className="text-gray-900">
+            <span className="text-gray-900 font-semibold">
               Shopify, WordPress, and custom stacks
             </span>{" "}
             that drive growth.
           </p>
+
+          {/* --- PARTNERS LOGO SECTION --- */}
+          <div className="space-y-5">
+            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+              Trusted Platform Partners
+            </p>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-6 transition-all duration-500">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Shopify_logo.svg"
+                alt="Shopify"
+                className="h-6 w-auto"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"
+                alt="Meta"
+                className="h-5 w-auto"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                alt="Google"
+                className="h-5 w-auto"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/WordPress_Logotype_Alternative.svg/500px-WordPress_Logotype_Alternative.svg.png"
+                alt="WordPress"
+                className="h-6 w-auto"
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg"
+                alt="Wix.com"
+                className="h-4 w-auto"
+              />
+              <img
+                src="https://imgs.search.brave.com/3I_6IBC_d0AMoHikTIGgtbzy0OZn1CbUmP5f0UrvTD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWRjb2xvci5vcmcv/d3AtY29udGVudC91/cGxvYWRzLzIwMjIv/MTAvYW1hem9uLWFk/cy1sb2dvLTMwMHgx/MDcucG5n"
+                alt="Amazon Ads"
+                className="h-10 w-auto"
+              />
+            </div>
+          </div>
 
           <div className="pt-2">
             <button
@@ -115,7 +161,6 @@ const HeroSection = () => {
               </div>
 
               <form className="space-y-8" onSubmit={handleSubmit}>
-                {/* Full Name */}
                 <div className="relative group">
                   <input
                     name="fullName"
@@ -130,7 +175,6 @@ const HeroSection = () => {
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
 
-                {/* Email */}
                 <div className="relative group">
                   <input
                     name="email"
@@ -145,7 +189,6 @@ const HeroSection = () => {
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
 
-                {/* Website URL */}
                 <div className="relative group">
                   <input
                     name="website"
@@ -159,7 +202,6 @@ const HeroSection = () => {
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
 
-                {/* Phone Number */}
                 <div className="relative group">
                   <input
                     name="phoneNumber"
@@ -174,7 +216,6 @@ const HeroSection = () => {
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
 
-                {/* Dropdown */}
                 <div className="relative group">
                   <select
                     value={service}
@@ -183,9 +224,9 @@ const HeroSection = () => {
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
                   >
                     <option value="" disabled hidden></option>
-                    <option value="shopify">Shopify Development</option>
-                    <option value="wordpress">WordPress Development</option>
-                    <option value="custom">Custom Website</option>
+                    <option value="crm">CRM Implementation</option>
+                    <option value="software">Custom Software</option>
+                    <option value="webapp">Web Application</option>
                   </select>
 
                   <label
@@ -203,7 +244,6 @@ const HeroSection = () => {
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}

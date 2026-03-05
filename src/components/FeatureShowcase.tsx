@@ -69,7 +69,7 @@ const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
                 Every Build
               </span>
             </h2>
-            <p className="text-base text-gray-500 max-w-lg leading-relaxed">
+            <p className="text-base text-gray-900 max-w-lg leading-relaxed">
               Every website comes standard with the essentials to perform and
               convert from day one.
             </p>
@@ -88,7 +88,7 @@ const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
                   <h3 className="text-lg font-bold text-gray-900">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                  <p className="text-sm text-gray-900 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
