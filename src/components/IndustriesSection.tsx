@@ -83,7 +83,10 @@ const IndustriesSection = ({ onOpenPopup }: IndustriesSectionProps) => {
     "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
 
   return (
-    <section id="industries" className="w-full py-20 lg:py-28 bg-[#FDFCF8] overflow-hidden flex flex-col items-center">
+    <section
+      id="industries"
+      className="w-full py-20 lg:py-28 bg-[#FDFCF8] overflow-hidden flex flex-col items-center"
+    >
       <div className="text-center max-w-2xl px-6 lg:px-16 mb-14 space-y-4">
         <div className="inline-block px-4 py-1.5 rounded-full border border-blue-200/50 bg-blue-50/30 text-[10px] font-bold uppercase tracking-widest text-[#3445E7]/70 shadow-sm">
           Serving 20+ Industries
@@ -96,7 +99,7 @@ const IndustriesSection = ({ onOpenPopup }: IndustriesSectionProps) => {
           We Build For
         </h2>
 
-        <p className="text-gray-500 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
+        <p className="text-gray-800 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
           From DTC brands to enterprise platforms, we build websites that drive
           real business results across every sector.
         </p>

@@ -33,7 +33,10 @@ const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
   ];
 
   return (
-    <section id="contact" className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#FDFCF8] px-4 sm:px-8 lg:px-20 overflow-hidden font-sans">
+    <section
+      id="contact"
+      className="relative w-full py-16 sm:py-24 lg:py-32 bg-[#FDFCF8] px-4 sm:px-8 lg:px-20 overflow-hidden font-sans"
+    >
       {/* Structural Background Lines - Hidden on very small screens to avoid clutter */}
       <div className="absolute inset-0 pointer-events-none opacity-40 select-none">
         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-300" />
@@ -55,7 +58,7 @@ const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
               Schedule Call.
             </span>
           </h2>
-          <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-lg mx-auto font-medium leading-relaxed px-4">
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-lg mx-auto font-medium leading-relaxed px-4">
             We maximize revenue and customer satisfaction by improving the
             efficiency of your digital strategy.
           </p>
@@ -97,7 +100,10 @@ const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
 
               {/* Action Buttons inside Frame - Adjusted for mobile visibility */}
               <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row gap-3 sm:gap-4 w-[85%] sm:w-max items-center">
-                <button onClick={onOpenPopup} className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white text-gray-900 px-5 sm:px-6 py-3 rounded-full font-medium text-[12px] sm:text-[13px] shadow-lg hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white cursor-pointer whitespace-nowrap">
+                <button
+                  onClick={onOpenPopup}
+                  className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-white text-gray-900 px-5 sm:px-6 py-3 rounded-full font-medium text-[12px] sm:text-[13px] shadow-lg hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:text-white cursor-pointer whitespace-nowrap"
+                >
                   <CalendarDays
                     size={16}
                     className="text-gray-900 group-hover:text-white "

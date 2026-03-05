@@ -174,9 +174,8 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
                   >
                     <option value="" disabled hidden></option>
-                    <option value="shopify">Shopify Development</option>
-                    <option value="wordpress">WordPress Development</option>
-                    <option value="custom">Custom Website</option>
+                    <option value="crm">Shopify Development</option>
+                    <option value="software">Custom Website </option>
                   </select>
                   <label
                     className={`absolute left-0 pointer-events-none transition-all duration-300 ${service ? "-top-5 text-[11px] text-[#2F85EA] font-bold" : "top-2.5 text-gray-400 text-[15px]"}`}

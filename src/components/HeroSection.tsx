@@ -100,22 +100,22 @@ const HeroSection = () => {
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Shopify_logo.svg"
                 alt="Shopify"
-                className="h-6 w-auto"
+                className="h-5 w-auto"
               />
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"
                 alt="Meta"
-                className="h-5 w-auto"
+                className="h-4 w-auto"
               />
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
                 alt="Google"
-                className="h-5 w-auto"
+                className="h-6 w-auto"
               />
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/WordPress_Logotype_Alternative.svg/500px-WordPress_Logotype_Alternative.svg.png"
                 alt="WordPress"
-                className="h-6 w-auto"
+                className="h-7 w-auto"
               />
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg"
@@ -168,7 +168,7 @@ const HeroSection = () => {
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
-                  <label className="absolute left-0 top-2.5 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
                     Full Name
                   </label>
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
@@ -182,7 +182,7 @@ const HeroSection = () => {
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
-                  <label className="absolute left-0 top-2.5 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
                     Email
                   </label>
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
@@ -195,7 +195,7 @@ const HeroSection = () => {
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
-                  <label className="absolute left-0 top-2.5 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
                     Website URL (optional)
                   </label>
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
@@ -209,7 +209,7 @@ const HeroSection = () => {
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
-                  <label className="absolute left-0 top-2.5 text-gray-400 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
                     Phone Number
                   </label>
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
@@ -224,8 +224,7 @@ const HeroSection = () => {
                   >
                     <option value="" disabled hidden></option>
                     <option value="crm">Shopify Development</option>
-                    <option value="software">Website Development</option>
-                    <option value="webapp">Wordpress Development</option>
+                    <option value="software">Custom Website </option>
                   </select>
 
                   <label
@@ -233,7 +232,7 @@ const HeroSection = () => {
                     ${
                       service
                         ? "-top-5 text-[11px] text-[#2F85EA] font-bold"
-                        : "top-2.5 text-gray-400 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
+                        : "top-2.5 text-gray-600 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
                     }`}
                   >
                     How can we help?

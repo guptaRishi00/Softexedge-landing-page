@@ -149,7 +149,10 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
   };
 
   return (
-    <section id="services" className="py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-white overflow-hidden">
+    <section
+      id="services"
+      className="py-16 lg:py-24 px-4 sm:px-8 lg:px-16 bg-white overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 lg:mb-14 px-2 gap-8">
@@ -171,10 +174,11 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index + itemsToShow)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${normalizedIndex === index
-                    ? "w-8 sm:w-12 bg-gradient-to-r from-[#3445E7] to-[#07D6F3]"
-                    : "w-2 sm:w-3 bg-gray-200 hover:bg-gray-300"
-                    }`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    normalizedIndex === index
+                      ? "w-8 sm:w-12 bg-gradient-to-r from-[#3445E7] to-[#07D6F3]"
+                      : "w-2 sm:w-3 bg-gray-200 hover:bg-gray-300"
+                  }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               );
@@ -214,14 +218,17 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
                       >
                         {card.title}
                       </h3>
-                      <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+                      <p className="text-gray-800 text-sm sm:text-base leading-relaxed">
                         {card.description}
                       </p>
                     </div>
                   </div>
 
                   <div className="relative z-10 flex items-center justify-between">
-                    <button onClick={onOpenPopup} className="group/btn flex items-center gap-3 rounded-full border border-gray-200 bg-white py-1.5 pl-4 pr-1.5 transition-all duration-300 hover:bg-blue-600 hover:border-blue-600">
+                    <button
+                      onClick={onOpenPopup}
+                      className="group/btn flex items-center gap-3 rounded-full border border-gray-200 bg-white py-1.5 pl-4 pr-1.5 transition-all duration-300 hover:bg-blue-600 hover:border-blue-600"
+                    >
                       <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500 group-hover/btn:text-white">
                         Learn More
                       </span>

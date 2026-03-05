@@ -14,27 +14,28 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
   const faqs = [
     {
       id: 1,
-      question: "How long does a typical design project take?",
+      question: "How can you deliver a professional website in just 7 days?",
       answer:
-        "Most of our branding and UI/UX projects are delivered within 4 to 8 weeks, depending on the complexity and scope of the brand strategy required.",
+        "We use an optimized development workflow and high-performance frameworks that allow us to skip the 'bloat' and focus immediately on your branding and content. For Shopify, we utilize proven conversion-optimized structures to get you selling as fast as possible.",
     },
     {
       id: 2,
-      question: "Do you offer full-stack development services?",
+      question: "Should I choose Shopify or a Custom Website for my business?",
       answer:
-        "Yes, we combine world-class design with high-performance development to build scalable, secure, and fast-loading digital products.",
+        "If you're focused on E-commerce and want easy inventory management, Shopify is the gold standard. For service-based businesses or unique web apps requiring maximum speed and specific features, a custom stack (like Next.js or WordPress) is often better. We’ll help you pick the right one.",
     },
-    {
-      id: 3,
-      question: "How do you handle project communication?",
-      answer:
-        "We use a combination of Slack for real-time updates and weekly strategy calls to ensure full transparency throughout the project lifecycle.",
-    },
+
     {
       id: 4,
-      question: "Can you help with post-launch brand growth?",
+      question: "Will my website be mobile-friendly and SEO-optimized?",
       answer:
-        "Absolutely. We provide strategic consulting and performance design updates to help your brand continue scaling long after the initial launch.",
+        "Every site we build is 'Mobile-First.' We ensure fast loading speeds, clean code for Google indexing, and responsive layouts that look perfect on iPhones, tablets, and desktops alike.",
+    },
+    {
+      id: 5,
+      question: "Do you provide support after the website goes live?",
+      answer:
+        "Yes. We provide a walkthrough to show you how to manage your new site, plus 30 days of post-launch technical support to ensure everything is running smoothly as you start receiving traffic.",
     },
   ];
 
@@ -65,10 +66,11 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
             return (
               <div
                 key={faq.id}
-                className={`group transition-all duration-500 rounded-[24px] ${isOpen
+                className={`group transition-all duration-500 rounded-[24px] ${
+                  isOpen
                     ? "bg-gray-50/50 p-6 lg:p-8"
                     : "bg-transparent p-6 lg:p-8  rounded-none hover:bg-gray-50/30"
-                  }`}
+                }`}
               >
                 <button
                   className="flex items-start justify-between w-full text-left gap-6"
@@ -78,16 +80,18 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
                     {/* Active Gradient Indicator */}
                     <div className="mt-2 hidden lg:block">
                       <div
-                        className={`w-1 h-8 rounded-full transition-all duration-500 ${isOpen
+                        className={`w-1 h-8 rounded-full transition-all duration-500 ${
+                          isOpen
                             ? "bg-linear-to-b from-[#3445E7] to-[#07D6F3] scale-y-100"
                             : "bg-gray-200 scale-y-50 opacity-0"
-                          }`}
+                        }`}
                       />
                     </div>
 
                     <h3
-                      className={`text-xl lg:text-2xl font-bold transition-all duration-300 ${isOpen ? "text-gray-900" : "text-gray-500"
-                        }`}
+                      className={`text-xl lg:text-2xl font-bold transition-all duration-300 ${
+                        isOpen ? "text-gray-900" : "text-gray-500"
+                      }`}
                     >
                       {faq.question}
                     </h3>
@@ -98,10 +102,11 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
                     <motion.div
                       animate={{ rotate: isOpen ? 45 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className={`flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full border transition-colors ${isOpen
+                      className={`flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full border transition-colors ${
+                        isOpen
                           ? "bg-[#04034C] border-[#04034C] text-white"
                           : "border-gray-200 text-gray-400 group-hover:border-gray-400 group-hover:text-gray-600"
-                        }`}
+                      }`}
                     >
                       <Plus size={20} strokeWidth={2.5} />
                     </motion.div>
@@ -118,7 +123,7 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
                       className="overflow-hidden"
                     >
                       <div className="lg:pl-10">
-                        <p className="text-gray-500 text-base lg:text-lg mt-6 max-w-3xl leading-relaxed font-medium">
+                        <p className="text-gray-800 text-base lg:text-lg mt-6 max-w-3xl leading-relaxed font-medium">
                           {faq.answer}
                         </p>
                       </div>
@@ -142,7 +147,10 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
               Still have more questions about your project?
             </p>
 
-            <button onClick={onOpenPopup} className="relative z-10 px-8 py-4 border text-gray-900 hover:border-white border-gray-900 hover:text-white rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] cursor-pointer active:scale-95">
+            <button
+              onClick={onOpenPopup}
+              className="relative z-10 px-8 py-4 border text-gray-900 hover:border-white border-gray-900 hover:text-white rounded-full font-bold text-sm hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] cursor-pointer active:scale-95"
+            >
               Schedule a call
             </button>
           </div>

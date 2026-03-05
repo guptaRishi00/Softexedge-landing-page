@@ -59,19 +59,20 @@ const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
           {/* Header Section */}
           <div className="space-y-5">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#3445E7] border border-[#3445E7]/30 rounded-full px-3 py-1 w-max mb-4">
-              Every Website Includes
+              Zero Compromise
             </span>
             <h2 className="text-3xl lg:text-4xl font-bold text-[#04034C] tracking-tight">
-              Built Into{" "}
+              The Foundation of{" "}
               <span
                 className={`${primaryGradient} bg-clip-text text-transparent`}
               >
-                Every Build
+                Every Project
               </span>
             </h2>
             <p className="text-base text-gray-900 max-w-lg leading-relaxed">
-              Every website comes standard with the essentials to perform and
-              convert from day one.
+              We don’t believe in "add-ons" for essentials. Every site is
+              engineered to be fast, secure, and conversion-ready from the
+              moment you launch.
             </p>
           </div>
 
