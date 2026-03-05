@@ -30,7 +30,7 @@ export default function Home() {
       <TestimonialSection />
       <ScheduleCallSection onOpenPopup={openPopup} />
       <FAQSection onOpenPopup={openPopup} />
-      <Footer />
+      {/* <Footer /> */}
       <ContactFormPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
