@@ -191,7 +191,7 @@ const HeroSection = () => {
                 <div className="relative group">
                   <input
                     name="website"
-                    type="url"
+                    type="text"
                     placeholder=" "
                     className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
                   />
