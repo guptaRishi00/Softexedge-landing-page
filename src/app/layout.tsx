@@ -53,10 +53,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // suppressHydrationWarning is added here to ignore extension-injected attributes
+    // suppressHydrationWarning prevents crashes from extension-injected attributes
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Tag Manager - Main Script */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -64,10 +64,9 @@ export default function RootLayout({
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-N6G4FRSN');`}
         </Script>
-        {/* End Google Tag Manager */}
       </head>
       <body className={`${gilroy.variable} ${gilroy.className} antialiased`}>
-        {/* Google Tag Manager (noscript) */}
+        {/* Google Tag Manager (noscript) fallback */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-N6G4FRSN"
@@ -76,7 +75,6 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
         {children}
       </body>
     </html>
