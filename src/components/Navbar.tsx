@@ -45,7 +45,7 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
           className="transition-opacity cursor-pointer"
         >
           <Image
-            src="/web/logo.svg"
+            src="/logo.svg"
             alt="Logo"
             width={130}
             height={40}

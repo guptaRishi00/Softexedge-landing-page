@@ -7,52 +7,52 @@ const Brands = () => {
   // Static logo data following the LogoItem type from your code
   const partnerLogos = [
     {
-      src: "/web/betting.png",
+      src: "/betting.png",
       alt: "Amazon",
     },
     {
-      src: "/web/blackshark.png",
+      src: "/blackshark.png",
       alt: "Google",
     },
     {
-      src: "/web/abc.png",
+      src: "/abc.png",
       alt: "Netflix",
     },
     {
-      src: "/web/aqualog.png",
+      src: "/aqualog.png",
       alt: "Slack",
     },
     {
-      src: "/web/auth.png",
+      src: "/auth.png",
       alt: "IBM",
     },
     {
-      src: "/web/threadify.png",
+      src: "/threadify.png",
       alt: "Microsoft",
     },
     {
-      src: "/web/bloomvest.png",
+      src: "/bloomvest.png",
       alt: "Bloomvest",
     },
     {
-      src: "/web/casinoscan.png",
+      src: "/casinoscan.png",
       alt: "Bloomvest",
     },
 
     {
-      src: "/web/trend.png",
+      src: "/trend.png",
       alt: "Bloomvest",
     },
     {
-      src: "/web/triti.png",
+      src: "/triti.png",
       alt: "Bloomvest",
     },
     {
-      src: "/web/twin.png",
+      src: "/twin.png",
       alt: "Bloomvest",
     },
     {
-      src: "/web/valpem.png",
+      src: "/valpem.png",
       alt: "Bloomvest",
     },
   ];

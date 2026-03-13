@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   title: "SoftEXedge",
   description: "Crafting Digital Experiences",
   icons: {
-    icon: "/web/icon.png",
+    icon: "/icon.png",
   },
 };
 
@@ -53,19 +53,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning is added here to ignore extension-injected attributes
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N6G4FRSN');`}
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-N6G4FRSN');`}
         </Script>
         {/* End Google Tag Manager */}
       </head>
-      <body className={`${gilroy.className} antialiased`}>
+      <body className={`${gilroy.variable} ${gilroy.className} antialiased`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
