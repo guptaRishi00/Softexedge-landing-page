@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import { SendHorizontal, X } from "lucide-react";
@@ -15,6 +15,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
   const router = useRouter();
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const searchParams = useSearchParams();
 
   // Lock body scroll when open
   useEffect(() => {
@@ -56,6 +57,11 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
       phoneNumber: formData.get("phoneNumber"),
       service: service || "Not Selected",
       timestamp: new Date().toLocaleString(),
+      utm_source: searchParams.get("utm_source") || "N/A",
+      utm_medium: searchParams.get("utm_medium") || "N/A",
+      utm_campaign: searchParams.get("utm_campaign") || "N/A",
+      utm_content: searchParams.get("utm_content") || "N/A",
+      utm_term: searchParams.get("utm_term") || "N/A",
     };
 
     try {

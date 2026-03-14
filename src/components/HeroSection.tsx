@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { MoveRight, SendHorizontal } from "lucide-react";
 
 const HeroSection = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -23,6 +24,11 @@ const HeroSection = () => {
       phoneNumber: formData.get("phoneNumber"),
       service: service || "Not Selected",
       timestamp: new Date().toLocaleString(),
+      utm_source: searchParams.get("utm_source") || "N/A",
+      utm_medium: searchParams.get("utm_medium") || "N/A",
+      utm_campaign: searchParams.get("utm_campaign") || "N/A",
+      utm_content: searchParams.get("utm_content") || "N/A",
+      utm_term: searchParams.get("utm_term") || "N/A",
     };
 
     try {
