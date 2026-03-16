@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Brands from "@/components/Brands";
 import CardCarousel from "@/components/CardCarousel";
 import ContactFormPopup from "@/components/ContactFormPopup";
@@ -21,7 +21,12 @@ export default function Home() {
   return (
     <div className="">
       <Navbar onOpenPopup={openPopup} />
-      <HeroSection />
+
+      {/* Wrap HeroSection in Suspense because it uses useSearchParams */}
+      <Suspense fallback={<div className="min-h-screen bg-white" />}>
+        <HeroSection />
+      </Suspense>
+
       <LogoCarousel />
       <Brands />
       <CardCarousel onOpenPopup={openPopup} />
@@ -31,11 +36,14 @@ export default function Home() {
       <ScheduleCallSection onOpenPopup={openPopup} />
       <FAQSection onOpenPopup={openPopup} />
       {/* <Footer /> */}
-      <ContactFormPopup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-      />
-      {/* Hello World */}
+
+      {/* Wrap ContactFormPopup in Suspense because it uses useSearchParams */}
+      <Suspense fallback={null}>
+        <ContactFormPopup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        />
+      </Suspense>
     </div>
   );
 }
