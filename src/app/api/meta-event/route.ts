@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     // Helper to securely hash user data to SHA-256
     const hash = (value: string | undefined | null) => {
-      if (!value) return "";
+      if (!value) return undefined;
       return crypto
         .createHash("sha256")
         .update(value.trim().toLowerCase())
@@ -19,29 +19,37 @@ export async function POST(req: Request) {
     const ACCESS_TOKEN = process.env.META_CAPI_ACCESS_TOKEN;
 
     if (!PIXEL_ID || !ACCESS_TOKEN) {
-      return NextResponse.json(
-        { error: "Missing Meta credentials" },
-        { status: 500 },
-      );
+      return NextResponse.json({ error: "Missing Meta credentials" }, { status: 500 });
     }
 
+    // Get IP and User Agent from headers safely
+    const ip = req.headers.get("x-forwarded-for")?.split(',')[0] || req.headers.get("x-real-ip") || "";
+    const userAgent = req.headers.get("user-agent") || "";
+
     const payload = {
+      test_event_code: "TEST74887", // Remove this line before going live!
       data: [
         {
           event_name: "Lead",
           event_time: Math.floor(Date.now() / 1000),
-          event_id: body.eventId, // Sent from the client for deduplication
+          event_id: body.eventId,
           action_source: "website",
           user_data: {
             em: body.email ? [hash(body.email)] : [],
             ph: body.phone ? [hash(body.phone)] : [],
+            fn: body.first_name ? [hash(body.first_name)] : [],
+            ln: body.last_name ? [hash(body.last_name)] : [],
+            client_ip_address: ip,
+            client_user_agent: userAgent,
+            fbc: body.fbc || undefined,
+            fbp: body.fbp || undefined,
           },
           custom_data: {
             lead_event_source: body.source || "website",
-            service_requested: body.service,
-          },
-        },
-      ],
+            service_requested: body.service
+          }
+        }
+      ]
     };
 
     const response = await fetch(
@@ -49,17 +57,15 @@ export async function POST(req: Request) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      },
+        body: JSON.stringify(payload)
+      }
     );
 
     const result = await response.json();
     return NextResponse.json({ success: true, metaResponse: result });
+
   } catch (error) {
     console.error("Meta CAPI Error:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 },
-    );
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }

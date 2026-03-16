@@ -16,8 +16,24 @@ const HeroSection = () => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
+    const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
     const phoneNumber = formData.get("phoneNumber") as string;
+
+    // Split Full Name for Meta CAPI
+    const nameParts = fullName.trim().split(" ");
+    const first_name = nameParts[0] || "";
+    const last_name = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+
+    // Extract Facebook Cookies for Advanced Matching
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(";").shift();
+      return undefined;
+    };
+    const fbp = getCookie("_fbp");
+    const fbc = getCookie("_fbc");
 
     // 1️⃣ Create a Unique Event ID for Meta Deduplication
     const eventId = "lead_hero_" + Date.now();
@@ -37,7 +53,7 @@ const HeroSection = () => {
 
     const payload = {
       formType: "Hero Section Contact Form",
-      fullName: formData.get("fullName"),
+      fullName: fullName,
       email: email,
       website: formData.get("website") || "N/A",
       phoneNumber: phoneNumber,
@@ -70,8 +86,12 @@ const HeroSection = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           eventId,
+          first_name,
+          last_name,
           email,
           phone: phoneNumber,
+          fbp,
+          fbc,
           source: "Hero Section Form",
           service: service || "Not Selected",
         }),
