@@ -16,12 +16,31 @@ const HeroSection = () => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const phoneNumber = formData.get("phoneNumber") as string;
+
+    // 1️⃣ Create a Unique Event ID for Meta Deduplication
+    const eventId = "lead_hero_" + Date.now();
+
+    // 2️⃣ Fire Browser-Side Meta Pixel Event
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq(
+        "track",
+        "Lead",
+        {
+          content_category: "Hero Section Form",
+          content_name: service || "Not Selected",
+        },
+        { eventID: eventId },
+      );
+    }
+
     const payload = {
       formType: "Hero Section Contact Form",
       fullName: formData.get("fullName"),
-      email: formData.get("email"),
+      email: email,
       website: formData.get("website") || "N/A",
-      phoneNumber: formData.get("phoneNumber"),
+      phoneNumber: phoneNumber,
       service: service || "Not Selected",
       timestamp: new Date().toLocaleString(),
       utm_source: searchParams.get("utm_source") || "N/A",
@@ -32,6 +51,7 @@ const HeroSection = () => {
     };
 
     try {
+      // 3️⃣ Send to Google Sheets CRM (Your original fetch)
       await fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
@@ -43,6 +63,19 @@ const HeroSection = () => {
           },
         },
       );
+
+      // 4️⃣ Send to your Server-Side Meta CAPI Route
+      await fetch("/api/meta-event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventId,
+          email,
+          phone: phoneNumber,
+          source: "Hero Section Form",
+          service: service || "Not Selected",
+        }),
+      });
 
       (e.target as HTMLFormElement).reset();
       setService("");

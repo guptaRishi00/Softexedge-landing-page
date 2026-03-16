@@ -49,12 +49,31 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const phoneNumber = formData.get("phoneNumber") as string;
+
+    // 1️⃣ Create a Unique Event ID for Meta Deduplication
+    const eventId = "lead_popup_" + Date.now();
+
+    // 2️⃣ Fire Browser-Side Meta Pixel Event
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq(
+        "track",
+        "Lead",
+        {
+          content_category: "Popup Form",
+          content_name: service || "Not Selected",
+        },
+        { eventID: eventId },
+      );
+    }
+
     const payload = {
       formType: "Popup Contact Form",
       fullName: formData.get("fullName"),
-      email: formData.get("email"),
+      email: email,
       website: formData.get("website") || "N/A", // Optional field check
-      phoneNumber: formData.get("phoneNumber"),
+      phoneNumber: phoneNumber,
       service: service || "Not Selected",
       timestamp: new Date().toLocaleString(),
       utm_source: searchParams.get("utm_source") || "N/A",
@@ -65,6 +84,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
     };
 
     try {
+      // 3️⃣ Send to Google Sheets CRM (Your original fetch)
       await fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
@@ -74,6 +94,20 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
           headers: { "Content-Type": "application/json" },
         },
       );
+
+      // 4️⃣ Send to your Server-Side Meta CAPI Route
+      await fetch("/api/meta-event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventId,
+          email,
+          phone: phoneNumber,
+          source: "Popup Contact Form",
+          service: service || "Not Selected",
+        }),
+      });
+
       onClose();
       (e.target as HTMLFormElement).reset();
       setService("");
