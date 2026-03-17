@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     const userAgent = req.headers.get("user-agent") || "";
 
     const payload = {
-      test_event_code: "TEST5364", // ✅ Kept this ACTIVE so it shows in your Test Manager
+      test_event_code: "TEST5364", // ✅ Kept this ACTIVE so it shows in your Test Manager. Remove for production!
       data: [
         {
           event_name: "Lead",
