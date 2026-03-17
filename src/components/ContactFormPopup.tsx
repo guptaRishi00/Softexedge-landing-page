@@ -49,9 +49,9 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    const fullName = formData.get("fullName") as string;
-    const email = formData.get("email") as string;
-    const phoneNumber = formData.get("phoneNumber") as string;
+    const fullName = (formData.get("fullName") as string) || "";
+    const email = (formData.get("email") as string) || "";
+    const phoneNumber = (formData.get("phoneNumber") as string) || "";
 
     // Split Full Name for Meta CAPI Advanced Matching
     const nameParts = fullName.trim().split(" ");

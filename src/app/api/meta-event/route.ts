@@ -25,15 +25,16 @@ export async function POST(req: Request) {
       );
     }
 
-    // Safely extract IP and User Agent from Next.js request headers
-    const ip =
-      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-      req.headers.get("x-real-ip") ||
-      "";
+    // SAFELY extract IP and User Agent (prevents localhost crashes)
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const ip = forwardedFor
+      ? forwardedFor.split(",")[0].trim()
+      : req.headers.get("x-real-ip") || "127.0.0.1";
+
     const userAgent = req.headers.get("user-agent") || "";
 
     const payload = {
-      // test_event_code: "TEST74887", // Uncomment to test in Events Manager, remove before going live
+      test_event_code: "TEST74887", // ✅ Kept this ACTIVE so it shows in your Test Manager
       data: [
         {
           event_name: "Lead",
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
             ph: body.phone ? [hash(body.phone)] : [],
             fn: body.first_name ? [hash(body.first_name)] : [],
             ln: body.last_name ? [hash(body.last_name)] : [],
-            external_id: body.email ? [hash(body.email)] : [], // Using hashed email as external ID
+            external_id: body.email ? [hash(body.email)] : [],
 
             // Plain strings
             client_ip_address: ip,
@@ -72,6 +73,10 @@ export async function POST(req: Request) {
     );
 
     const result = await response.json();
+
+    // Log Meta's response to your terminal so you can see if they accept it!
+    console.log("Meta CAPI Response:", result);
+
     return NextResponse.json({ success: true, metaResponse: result });
   } catch (error) {
     console.error("Meta CAPI Error:", error);
