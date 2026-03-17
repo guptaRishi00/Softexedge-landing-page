@@ -20,25 +20,29 @@ const HeroSection = () => {
     const email = formData.get("email") as string;
     const phoneNumber = formData.get("phoneNumber") as string;
 
-    // Split Full Name for Meta CAPI
+    // Split Full Name
     const nameParts = fullName.trim().split(" ");
     const first_name = nameParts[0] || "";
     const last_name = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
-    // Extract Facebook Cookies for Advanced Matching
+    // Safely Extract Meta Cookies
     const getCookie = (name: string) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop()?.split(";").shift();
       return undefined;
     };
-    const fbp = getCookie("_fbp");
-    const fbc = getCookie("_fbc");
 
-    // 1️⃣ Create a Unique Event ID for Meta Deduplication
+    const fbp = getCookie("_fbp");
+    const fbclid = searchParams.get("fbclid");
+    const fbc =
+      getCookie("_fbc") ||
+      (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+
+    // 1️⃣ Create Event ID
     const eventId = "lead_hero_" + Date.now();
 
-    // 2️⃣ Fire Browser-Side Meta Pixel Event
+    // 2️⃣ Browser Meta Pixel
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq(
         "track",
@@ -67,7 +71,7 @@ const HeroSection = () => {
     };
 
     try {
-      // 3️⃣ Send to Google Sheets CRM (Your original fetch)
+      // 3️⃣ Google Sheets
       await fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
@@ -80,7 +84,7 @@ const HeroSection = () => {
         },
       );
 
-      // 4️⃣ Send to your Server-Side Meta CAPI Route
+      // 4️⃣ Server CAPI
       await fetch("/api/meta-event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

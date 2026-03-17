@@ -53,22 +53,27 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
     const email = formData.get("email") as string;
     const phoneNumber = formData.get("phoneNumber") as string;
 
-    // Split Full Name for Meta CAPI
+    // Split Full Name for Meta CAPI Advanced Matching
     const nameParts = fullName.trim().split(" ");
     const first_name = nameParts[0] || "";
     const last_name = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
-    // Extract Facebook Cookies for Advanced Matching
+    // Safely Extract Meta Cookies
     const getCookie = (name: string) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop()?.split(";").shift();
       return undefined;
     };
-    const fbp = getCookie("_fbp");
-    const fbc = getCookie("_fbc");
 
-    // 1️⃣ Create a Unique Event ID for Meta Deduplication
+    const fbp = getCookie("_fbp");
+    // Failsafe: If cookie fails, construct fbc manually from URL param
+    const fbclid = searchParams.get("fbclid");
+    const fbc =
+      getCookie("_fbc") ||
+      (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+
+    // 1️⃣ Create Event ID
     const eventId = "lead_popup_" + Date.now();
 
     // 2️⃣ Fire Browser-Side Meta Pixel Event
@@ -88,7 +93,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
       formType: "Popup Contact Form",
       fullName: fullName,
       email: email,
-      website: formData.get("website") || "N/A", // Optional field check
+      website: formData.get("website") || "N/A",
       phoneNumber: phoneNumber,
       service: service || "Not Selected",
       timestamp: new Date().toLocaleString(),
@@ -100,7 +105,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
     };
 
     try {
-      // 3️⃣ Send to Google Sheets CRM (Your original fetch)
+      // 3️⃣ Google Sheets CRM
       await fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
@@ -111,7 +116,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
         },
       );
 
-      // 4️⃣ Send to your Server-Side Meta CAPI Route
+      // 4️⃣ Server-Side Meta CAPI
       await fetch("/api/meta-event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
