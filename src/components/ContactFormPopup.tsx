@@ -60,17 +60,22 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
 
     // Safely Extract Meta Cookies
     const getCookie = (name: string) => {
+      if (typeof document === "undefined") return undefined;
       const match = document.cookie.match(
         new RegExp("(^| )" + name + "=([^;]+)"),
       );
-      return match ? match[2] : undefined;
+      return match ? decodeURIComponent(match[2]) : undefined;
     };
 
-    const fbp = getCookie("_fbp");
+    const fbpCookie = getCookie("_fbp");
+    const fbcCookie = getCookie("_fbc");
     const fbclid = searchParams.get("fbclid");
+
+    // Construct fbc strictly according to Meta's requirements if cookie is missing
     const fbc =
-      getCookie("_fbc") ||
-      (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+      fbcCookie || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+    const fbp = fbpCookie || undefined;
+
     // 1️⃣ Create Event ID
     const eventId = "lead_popup_" + Date.now();
 
@@ -204,7 +209,6 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
                 </div>
 
                 <div className="relative group">
-                  {/* WEBSITE URL: Optional (no required attribute) */}
                   <input
                     name="website"
                     type="url"
@@ -238,7 +242,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
                   >
                     <option value="" disabled hidden></option>
                     <option value="crm">Shopify Development</option>
-                    <option value="software">Custom Website </option>
+                    <option value="software">Custom Website</option>
                   </select>
                   <label
                     className={`absolute left-0 pointer-events-none transition-all duration-300 ${service ? "-top-5 text-[11px] text-[#2F85EA] font-bold" : "top-2.5 text-gray-400 text-[15px]"}`}

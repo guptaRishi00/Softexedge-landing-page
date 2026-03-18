@@ -27,17 +27,20 @@ const HeroSection = () => {
 
     // Safely Extract Meta Cookies
     const getCookie = (name: string) => {
+      if (typeof document === "undefined") return undefined;
       const match = document.cookie.match(
         new RegExp("(^| )" + name + "=([^;]+)"),
       );
-      return match ? match[2] : undefined;
+      return match ? decodeURIComponent(match[2]) : undefined;
     };
 
-    const fbp = getCookie("_fbp");
+    const fbpCookie = getCookie("_fbp");
+    const fbcCookie = getCookie("_fbc");
     const fbclid = searchParams.get("fbclid");
+
     const fbc =
-      getCookie("_fbc") ||
-      (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+      fbcCookie || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+    const fbp = fbpCookie || undefined;
 
     // 1️⃣ Create Event ID
     const eventId = "lead_hero_" + Date.now();
@@ -287,7 +290,7 @@ const HeroSection = () => {
                   >
                     <option value="" disabled hidden></option>
                     <option value="crm">Shopify Development</option>
-                    <option value="software">Custom Website </option>
+                    <option value="software">Custom Website</option>
                   </select>
 
                   <label
