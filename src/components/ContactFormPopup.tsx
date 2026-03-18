@@ -60,19 +60,17 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
 
     // Safely Extract Meta Cookies
     const getCookie = (name: string) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop()?.split(";").shift();
-      return undefined;
+      const match = document.cookie.match(
+        new RegExp("(^| )" + name + "=([^;]+)"),
+      );
+      return match ? match[2] : undefined;
     };
 
     const fbp = getCookie("_fbp");
-    // Failsafe: If cookie fails, construct fbc manually from URL param
     const fbclid = searchParams.get("fbclid");
     const fbc =
       getCookie("_fbc") ||
       (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
-
     // 1️⃣ Create Event ID
     const eventId = "lead_popup_" + Date.now();
 

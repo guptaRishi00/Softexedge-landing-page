@@ -6,7 +6,6 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // Helper to securely hash user data to SHA-256 (Required by Meta)
     const hash = (value: string | undefined | null) => {
       if (!value) return undefined;
       return crypto
@@ -25,16 +24,24 @@ export async function POST(req: Request) {
       );
     }
 
-    // SAFELY extract IP and User Agent (prevents localhost crashes)
+    // 🚨 STRONGER IP EXTRACTION
     const forwardedFor = req.headers.get("x-forwarded-for");
-    const ip = forwardedFor
-      ? forwardedFor.split(",")[0].trim()
-      : req.headers.get("x-real-ip") || "127.0.0.1";
+    const realIp = req.headers.get("x-real-ip");
+    const cfIp = req.headers.get("cf-connecting-ip");
+
+    let ip = "";
+    if (forwardedFor) {
+      ip = forwardedFor.split(",")[0].trim();
+    } else if (realIp) {
+      ip = realIp.trim();
+    } else if (cfIp) {
+      ip = cfIp.trim();
+    }
 
     const userAgent = req.headers.get("user-agent") || "";
 
     const payload = {
-      test_event_code: "TEST5364", // ✅ Kept this ACTIVE so it shows in your Test Manager. Remove for production!
+      test_event_code: "TEST5364", // Keep for testing, remove for production
       data: [
         {
           event_name: "Lead",
@@ -42,15 +49,13 @@ export async function POST(req: Request) {
           event_id: body.eventId,
           action_source: "website",
           user_data: {
-            // Arrays of hashed strings
             em: body.email ? [hash(body.email)] : [],
             ph: body.phone ? [hash(body.phone)] : [],
             fn: body.first_name ? [hash(body.first_name)] : [],
             ln: body.last_name ? [hash(body.last_name)] : [],
             external_id: body.email ? [hash(body.email)] : [],
 
-            // Plain strings
-            client_ip_address: ip,
+            client_ip_address: ip || undefined, // Will now safely pass the real IP
             client_user_agent: userAgent,
             fbc: body.fbc || undefined,
             fbp: body.fbp || undefined,
@@ -73,10 +78,6 @@ export async function POST(req: Request) {
     );
 
     const result = await response.json();
-
-    // Log Meta's response to your terminal so you can see if they accept it!
-    console.log("Meta CAPI Response:", result);
-
     return NextResponse.json({ success: true, metaResponse: result });
   } catch (error) {
     console.error("Meta CAPI Error:", error);
