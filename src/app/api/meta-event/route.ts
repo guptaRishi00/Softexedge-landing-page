@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     const userAgent = req.headers.get("user-agent") || "";
 
     const payload = {
-      test_event_code: "TEST34555", // Keep for testing, remove for production
+      // test_event_code: "TEST34555", // Keep for testing, remove for production
       data: [
         {
           event_name: "Lead",
