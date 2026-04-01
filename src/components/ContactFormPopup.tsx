@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import { SendHorizontal, X } from "lucide-react";
+import SchedulePicker from "./SchedulePicker";
 
 interface ContactFormPopupProps {
   isOpen: boolean;
@@ -15,6 +16,10 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
   const router = useRouter();
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [scheduledDateTime, setScheduledDateTime] = useState({
+    date: "",
+    time: "",
+  });
   const searchParams = useSearchParams();
 
   // Lock body scroll when open
@@ -99,6 +104,8 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
       website: formData.get("website") || "N/A",
       phoneNumber: phoneNumber,
       service: service || "Not Selected",
+      scheduledDate: scheduledDateTime.date || "N/A",
+      scheduledTime: scheduledDateTime.time || "N/A",
       timestamp: new Date().toLocaleString(),
       utm_source: searchParams.get("utm_source") || "N/A",
       utm_medium: searchParams.get("utm_medium") || "N/A",
@@ -138,6 +145,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
 
       onClose();
       (e.target as HTMLFormElement).reset();
+      setScheduledDateTime({ date: "", time: "" });
       setService("");
       router.push("/thank-you");
     } catch (error) {
@@ -155,7 +163,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center px-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center px-4 overflow-y-auto no-scrollbar"
           onClick={onClose}
         >
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
@@ -164,10 +172,10 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
             initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
-            className="relative w-full max-w-md"
+            className="relative w-full max-w-md max-h-[90vh] overflow-y-auto my-auto no-scrollbar"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative bg-white rounded-[32px] p-8 lg:p-10 shadow-2xl">
+            <div className="relative bg-white rounded-[32px] p-8 lg:p-10 shadow-2xl ">
               <button
                 onClick={onClose}
                 className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:text-gray-700 hover:border-gray-400 transition-all cursor-pointer"
@@ -251,6 +259,14 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
                   </label>
                   <IoIosArrowDown className="absolute right-0 top-3 text-gray-300" />
                 </div>
+
+                <SchedulePicker
+                  selectedDate={scheduledDateTime.date}
+                  selectedTime={scheduledDateTime.time}
+                  onSelect={(date, time) =>
+                    setScheduledDateTime({ date, time })
+                  }
+                />
 
                 <button
                   type="submit"

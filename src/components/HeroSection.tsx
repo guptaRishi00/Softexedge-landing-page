@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { MoveRight, SendHorizontal } from "lucide-react";
+import SchedulePicker from "./SchedulePicker";
 
 const HeroSection = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [scheduledDateTime, setScheduledDateTime] = useState({ date: "", time: "" });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,6 +67,8 @@ const HeroSection = () => {
       website: formData.get("website") || "N/A",
       phoneNumber: phoneNumber,
       service: service || "Not Selected",
+      scheduledDate: scheduledDateTime.date || "N/A",
+      scheduledTime: scheduledDateTime.time || "N/A",
       timestamp: new Date().toLocaleString(),
       utm_source: searchParams.get("utm_source") || "N/A",
       utm_medium: searchParams.get("utm_medium") || "N/A",
@@ -106,6 +110,7 @@ const HeroSection = () => {
 
       (e.target as HTMLFormElement).reset();
       setService("");
+      setScheduledDateTime({ date: "", time: "" });
       router.push("/thank-you");
     } catch (error) {
       console.error("Submission error:", error);
@@ -307,6 +312,12 @@ const HeroSection = () => {
                   <IoIosArrowDown className="absolute right-0 top-3 text-gray-300 group-focus-within:rotate-180 transition-transform" />
                   <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
                 </div>
+
+                <SchedulePicker
+                  selectedDate={scheduledDateTime.date}
+                  selectedTime={scheduledDateTime.time}
+                  onSelect={(date, time) => setScheduledDateTime({ date, time })}
+                />
 
                 <button
                   type="submit"
