@@ -20,9 +20,9 @@ const LogoCarousel = () => {
 
     "11.PNG",
 
-    "21.png",
-    "20.png",
-    "19.png",
+    "23.jpeg",
+    "22.jpeg",
+    "24.jpeg",
     "13.PNG",
   ];
 
