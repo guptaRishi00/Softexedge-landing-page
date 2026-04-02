@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
-import { MoveRight, SendHorizontal } from "lucide-react";
+import { MoveRight, SendHorizontal, Globe, ArrowLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import SchedulePicker from "./SchedulePicker";
 
 const HeroSection = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [step, setStep] = useState(1);
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [scheduledDateTime, setScheduledDateTime] = useState({ date: "", time: "" });
@@ -22,12 +24,10 @@ const HeroSection = () => {
     const email = (formData.get("email") as string) || "";
     const phoneNumber = (formData.get("phoneNumber") as string) || "";
 
-    // Split Full Name
     const nameParts = fullName.trim().split(" ");
     const first_name = nameParts[0] || "";
     const last_name = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
-    // Safely Extract Meta Cookies
     const getCookie = (name: string) => {
       if (typeof document === "undefined") return undefined;
       const match = document.cookie.match(
@@ -44,10 +44,8 @@ const HeroSection = () => {
       fbcCookie || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
     const fbp = fbpCookie || undefined;
 
-    // 1️⃣ Create Event ID
     const eventId = "lead_hero_" + Date.now();
 
-    // 2️⃣ Browser Meta Pixel
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq(
         "track",
@@ -78,7 +76,6 @@ const HeroSection = () => {
     };
 
     try {
-      // 3️⃣ Google Sheets
       await fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
@@ -91,7 +88,6 @@ const HeroSection = () => {
         },
       );
 
-      // 4️⃣ Server CAPI
       await fetch("/api/meta-event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -111,6 +107,7 @@ const HeroSection = () => {
       (e.target as HTMLFormElement).reset();
       setService("");
       setScheduledDateTime({ date: "", time: "" });
+      setStep(1);
       router.push("/thank-you");
     } catch (error) {
       console.error("Submission error:", error);
@@ -141,7 +138,6 @@ const HeroSection = () => {
               </span>
             </div>
 
-            {/* UPDATED TITLE SECTION */}
             <h1 className="text-4xl md:text-6xl lg:text-[50px] leading-[1.1] font-extrabold text-gray-900 tracking-tighter">
               Get a professional website <br className="hidden md:block" />{" "}
               <span className="inline-block bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent pr-2">
@@ -220,121 +216,156 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* RIGHT: FORM */}
+        {/* RIGHT: 2-STEP FORM */}
         <div className="w-full lg:w-[42%]">
           <div className="relative p-[1.5px] rounded-[32px] bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]">
-            <div className="relative bg-white rounded-[30.5px] p-8 lg:p-10">
-              <div className="mb-8">
-                <h2 className="text-3xl font-black text-gray-900 tracking-tight">
-                  Let&apos;s Talk<span className="text-[#2F85EA]">.</span>
-                </h2>
-              </div>
+            <div className="relative bg-white rounded-[30.5px] p-8 lg:p-10 min-h-[500px] flex flex-col justify-center overflow-hidden">
+              <AnimatePresence mode="wait">
 
-              <form className="space-y-8" onSubmit={handleSubmit}>
-                <div className="relative group">
-                  <input
-                    name="fullName"
-                    type="text"
-                    required
-                    placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
-                  />
-                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
-                    Full Name
-                  </label>
-                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
-                </div>
-
-                <div className="relative group">
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
-                  />
-                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
-                    Email
-                  </label>
-                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
-                </div>
-
-                <div className="relative group">
-                  <input
-                    name="website"
-                    type="text"
-                    placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
-                  />
-                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
-                    Website URL (optional)
-                  </label>
-                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
-                </div>
-
-                <div className="relative group">
-                  <input
-                    name="phoneNumber"
-                    type="tel"
-                    required
-                    placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
-                  />
-                  <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
-                    Phone Number
-                  </label>
-                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
-                </div>
-
-                <div className="relative group">
-                  <select
-                    value={service}
-                    onChange={(e) => setService(e.target.value)}
-                    required
-                    className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
-                  >
-                    <option value="" disabled hidden></option>
-                    <option value="crm">Shopify Development</option>
-                    <option value="software">Custom Website</option>
-                  </select>
-
-                  <label
-                    className={`absolute left-0 pointer-events-none transition-all duration-300 
-                    ${
-                      service
-                        ? "-top-5 text-[11px] text-[#2F85EA] font-bold"
-                        : "top-2.5 text-gray-600 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
-                    }`}
-                  >
-                    How can we help?
-                  </label>
-
-                  <IoIosArrowDown className="absolute right-0 top-3 text-gray-300 group-focus-within:rotate-180 transition-transform" />
-                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
-                </div>
-
-                <SchedulePicker
-                  selectedDate={scheduledDateTime.date}
-                  selectedTime={scheduledDateTime.time}
-                  onSelect={(date, time) => setScheduledDateTime({ date, time })}
-                />
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="group flex items-center justify-center gap-3 w-full bg-transparent border border-gray-300 py-4 rounded-full text-[15px] font-medium text-gray-900 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white cursor-pointer hover:text-white hover:scale-[1.01] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span className="tracking-tight">
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </span>
-                  {!isSubmitting && (
-                    <SendHorizontal
-                      size={16}
-                      className="group-hover:translate-x-1 transition-transform"
+                {/* STEP 1: SCHEDULING UI */}
+                {step === 1 && (
+                  <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+                    <SchedulePicker
+                      selectedDate={scheduledDateTime.date}
+                      selectedTime={scheduledDateTime.time}
+                      onSelect={(date, time) => setScheduledDateTime({ date, time })}
                     />
-                  )}
-                </button>
-              </form>
+                    <div className="flex flex-col sm:flex-row items-center justify-between mt-8 pt-6 border-t border-gray-100 gap-4">
+                      <div className="flex items-center gap-2 text-[14px] text-gray-600 font-medium w-full sm:w-auto">
+                        <Globe size={16} /> Asia/Calcutta (GMT+5:30)
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setStep(2)}
+                        disabled={!scheduledDateTime.date || !scheduledDateTime.time}
+                        className={`w-full sm:w-auto px-8 py-3 rounded-full text-[15px] font-bold transition-all cursor-pointer active:scale-95 ${scheduledDateTime.date && scheduledDateTime.time
+                          ? "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] text-white border border-white hover:brightness-110"
+                          : "bg-transparent border border-gray-300 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                          }`}
+                      >
+                        Confirm details
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 2: USER DETAILS FORM */}
+                {step === 2 && (
+                  <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                    <div className="mb-8 flex flex-col gap-2">
+                      <button type="button" onClick={() => setStep(1)} className="flex items-center gap-1 text-gray-400 hover:text-[#2F85EA] text-sm font-bold transition-colors w-fit mb-2 cursor-pointer">
+                        <ArrowLeft size={14} /> Back to Schedule
+                      </button>
+                      <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-none">
+                        Your Details<span className="text-[#2F85EA]">.</span>
+                      </h2>
+                      <p className="text-sm font-medium text-gray-500">
+                        Booking for {scheduledDateTime.date} at {scheduledDateTime.time}
+                      </p>
+                    </div>
+
+                    <form className="space-y-8" onSubmit={handleSubmit}>
+                      <div className="relative group">
+                        <input
+                          name="fullName"
+                          type="text"
+                          required
+                          placeholder=" "
+                          className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                        />
+                        <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                          Full Name
+                        </label>
+                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                      </div>
+
+                      <div className="relative group">
+                        <input
+                          name="email"
+                          type="email"
+                          required
+                          placeholder=" "
+                          className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                        />
+                        <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                          Email
+                        </label>
+                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                      </div>
+
+                      <div className="relative group">
+                        <input
+                          name="website"
+                          type="text"
+                          placeholder=" "
+                          className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                        />
+                        <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                          Website URL (optional)
+                        </label>
+                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                      </div>
+
+                      <div className="relative group">
+                        <input
+                          name="phoneNumber"
+                          type="tel"
+                          required
+                          placeholder=" "
+                          className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] focus:outline-none focus:border-[#2F85EA] transition-all"
+                        />
+                        <label className="absolute left-0 top-2.5 text-gray-600 pointer-events-none transition-all duration-300 peer-focus:-top-5 peer-focus:text-[11px] peer-focus:text-[#2F85EA] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-5 peer-[:not(:placeholder-shown)]:text-[11px]">
+                          Phone Number
+                        </label>
+                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                      </div>
+
+                      <div className="relative group">
+                        <select
+                          value={service}
+                          onChange={(e) => setService(e.target.value)}
+                          required
+                          className="peer w-full bg-transparent border-b-2 border-gray-100 py-2.5 text-[#04034C] text-[15px] appearance-none focus:outline-none focus:border-[#2F85EA] cursor-pointer"
+                        >
+                          <option value="" disabled hidden></option>
+                          <option value="crm">Shopify Development</option>
+                          <option value="software">Custom Website</option>
+                        </select>
+
+                        <label
+                          className={`absolute left-0 pointer-events-none transition-all duration-300 
+                          ${service
+                              ? "-top-5 text-[11px] text-[#2F85EA] font-bold"
+                              : "top-2.5 text-gray-600 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
+                            }`}
+                        >
+                          How can we help?
+                        </label>
+
+                        <IoIosArrowDown className="absolute right-0 top-3 text-gray-300 group-focus-within:rotate-180 transition-transform" />
+                        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-linear-to-r from-[#3445E7] to-[#07D6F3] group-focus-within:w-full transition-all duration-500" />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="group flex items-center justify-center gap-3 w-full bg-transparent border border-gray-300 py-4 rounded-full text-[15px] font-medium text-gray-900 hover:bg-linear-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3] hover:border-white cursor-pointer hover:text-white hover:scale-[1.01] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <span className="tracking-tight">
+                          {isSubmitting ? "Sending..." : "Send Message"}
+                        </span>
+                        {!isSubmitting && (
+                          <SendHorizontal
+                            size={16}
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
+                        )}
+                      </button>
+                    </form>
+                  </motion.div>
+                )}
+
+              </AnimatePresence>
             </div>
           </div>
         </div>
