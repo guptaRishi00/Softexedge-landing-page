@@ -59,7 +59,7 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
       <div className="space-y-4 sm:space-y-4">
         <div className="flex items-center justify-between gap-2">
           <h3 className="text-base sm:text-lg font-bold text-[#04034C]">When should we connect?</h3>
-          <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
+          <div className="hidden sm:flex gap-2 shrink-0">
             <button
               type="button"
               onClick={() => { setDirection(-1); setPage((p) => Math.max(0, p - 1)); }}
@@ -79,7 +79,27 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
           </div>
         </div>
         
-        <div className="relative overflow-hidden">
+        {/* Mobile: Horizontal scroll strip */}
+        <div className="sm:hidden flex gap-2 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory -mx-1 px-1">
+          {allDates.map((item, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => onSelect(item.date, selectedTime)}
+              className={`min-w-[72px] shrink-0 py-3 px-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer snap-start ${
+                selectedDate === item.date
+                  ? "border-[#2F85EA] bg-blue-50/40"
+                  : "border-gray-200 hover:border-gray-300"
+              }`}
+            >
+              <span className={`text-[10px] font-bold ${selectedDate === item.date ? 'text-gray-900' : 'text-gray-600'}`}>{item.day}</span>
+              <span className={`text-[13px] font-bold ${selectedDate === item.date ? 'text-gray-900' : 'text-gray-800'}`}>{item.date}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Desktop: Paginated carousel */}
+        <div className="hidden sm:block relative overflow-hidden">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={page}
@@ -87,21 +107,21 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: direction > 0 ? -120 : 120, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="flex gap-2 sm:gap-3"
+              className="flex gap-3"
             >
               {visibleDates.map((item, idx) => (
                 <button
                   key={`${page}-${idx}`}
                   type="button"
                   onClick={() => onSelect(item.date, selectedTime)}
-                  className={`min-w-0 flex-1 py-3 sm:py-3 px-2 sm:px-2 rounded-xl border flex flex-col items-center gap-1 sm:gap-1 transition-all cursor-pointer ${
+                  className={`min-w-0 flex-1 py-3 px-2 rounded-xl border flex flex-col items-center gap-1 transition-all cursor-pointer ${
                     selectedDate === item.date
                       ? "border-[#2F85EA] bg-blue-50/40"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <span className={`text-[10px] sm:text-[11px] font-bold ${selectedDate === item.date ? 'text-gray-900' : 'text-gray-600'}`}>{item.day}</span>
-                  <span className={`text-[13px] sm:text-[15px] font-bold ${selectedDate === item.date ? 'text-gray-900' : 'text-gray-800'}`}>{item.date}</span>
+                  <span className={`text-[11px] font-bold ${selectedDate === item.date ? 'text-gray-900' : 'text-gray-600'}`}>{item.day}</span>
+                  <span className={`text-[15px] font-bold ${selectedDate === item.date ? 'text-gray-900' : 'text-gray-800'}`}>{item.date}</span>
                 </button>
               ))}
             </motion.div>

@@ -29,9 +29,9 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
       {/* Alert / Announcement Bar */}
       <div className="fixed top-0 w-full z-50 bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] text-white text-center py-2.5 px-4">
         <p className="text-[8px] sm:text-[13px] font-medium tracking-wide">
-          ⚠️ Alert: Beware of fake agencies promising premium websites at throwaway prices.{" "}
+          Partner with an agency that prioritizes exceptional design and robust development.{" "}
           <a href="mailto:admin@softexedge.com" className="underline underline-offset-2 font-bold hover:text-white/80 transition-colors">
-            Verify with us →
+            Start your project →
           </a>
         </p>
       </div>
@@ -64,36 +64,7 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
             />
           </a>
 
-          {/* RIGHT: Buttons */}
-          <div className="flex items-center gap-3">
-            {/* Schedule A Call */}
-            <button
-              onClick={onOpenPopup}
-              className={`hidden md:flex items-center gap-2 group ${buttonBase} ${buttonIdle} ${buttonHover}`}
-            >
-              <CalendarDays
-                size={16}
-                className="text-gray-400 group-hover:text-white"
-              />
-              <span>Schedule A Call</span>
-            </button>
 
-            {/* Get In Touch */}
-            <button
-              onClick={onOpenPopup}
-              className={`
-                ${buttonBase} 
-                /* Mobile Styles: Gradient active */
-                text-white border-white bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]
-                /* Desktop Styles: Revert to idle (outlined) */
-                md:text-gray-700 md:border-gray-300 md:bg-none md:bg-transparent
-                /* Shared Hover effect */
-                ${buttonHover}
-              `}
-            >
-              Get In Touch
-            </button>
-          </div>
         </div>
       </nav>
     </>
