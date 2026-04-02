@@ -17,6 +17,9 @@ const LogoCarousel = () => {
     "11.PNG",
     "12.PNG",
     "13.PNG",
+    "16.png",
+    "17.png",
+    "18.png",
   ];
 
   const displayProjects = [...projects, ...projects];

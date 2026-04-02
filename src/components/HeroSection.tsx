@@ -120,7 +120,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-0 mt-20"
+      className="relative w-full bg-white py-16 lg:py-35 px-6 lg:px-16 overflow-hidden lg:mt-10 mt-30"
     >
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/30 rounded-full blur-[100px] -z-10" />
 
