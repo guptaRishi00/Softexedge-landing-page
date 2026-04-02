@@ -197,7 +197,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="pt-2">
+          {/* <div className="pt-2">
             <button
               onClick={(e) => {
                 e.preventDefault();
@@ -213,7 +213,7 @@ const HeroSection = () => {
                 className="group-hover:translate-x-1 transition-transform"
               />
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* RIGHT: 2-STEP FORM */}
