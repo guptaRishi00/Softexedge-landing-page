@@ -96,7 +96,7 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
                   onClick={() => onSelect(item.date, selectedTime)}
                   className={`min-w-0 flex-1 py-2.5 sm:py-3 px-1.5 sm:px-2 rounded-xl border flex flex-col items-center gap-0.5 sm:gap-1 transition-all cursor-pointer ${
                     selectedDate === item.date
-                      ? "border-red-600 bg-red-50/30"
+                      ? "border-[#2F85EA] bg-blue-50/40"
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
@@ -139,7 +139,7 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
               onClick={() => handleTimeSelect(time)}
               className={`w-[calc(33.333%-6px)] sm:w-[calc(25%-9px)] py-2.5 sm:py-3 rounded-xl border text-[12px] sm:text-[14px] font-bold transition-all cursor-pointer ${
                 selectedTime === time
-                  ? "border-red-600 bg-red-50/30 text-gray-900"
+                  ? "border-[#2F85EA] bg-blue-50/40 text-gray-900"
                   : "border-gray-200 text-gray-800 hover:border-gray-300"
               }`}
             >
