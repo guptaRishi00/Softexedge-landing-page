@@ -19,7 +19,7 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
   // Generate the next 20 weekdays dynamically
   const allDates = Array.from({ length: 40 }).map((_, i) => {
     const d = new Date();
-    d.setDate(d.getDate() + i + 1);
+    d.setDate(d.getDate() + i);
     return d;
   }).filter(d => d.getDay() !== 0 && d.getDay() !== 6).slice(0, 20).map(d => {
     const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
