@@ -9,51 +9,74 @@ const Brands = () => {
     {
       src: "/betting.png",
       alt: "Amazon",
+      width: 140,
+      height: 60,
     },
     {
       src: "/blackshark.png",
       alt: "Google",
+      width: 140,
+      height: 60,
     },
     {
       src: "/abc.png",
       alt: "Netflix",
+      width: 140,
+      height: 60,
     },
     {
       src: "/aqualog.png",
       alt: "Slack",
+      width: 140,
+      height: 60,
     },
     {
       src: "/auth.png",
       alt: "IBM",
+      width: 140,
+      height: 60,
     },
     {
       src: "/threadify.png",
       alt: "Microsoft",
+      width: 140,
+      height: 60,
     },
     {
       src: "/bloomvest.png",
       alt: "Bloomvest",
+      width: 140,
+      height: 60,
     },
     {
       src: "/casinoscan.png",
       alt: "Bloomvest",
+      width: 140,
+      height: 60,
     },
-
     {
       src: "/trend.png",
       alt: "Bloomvest",
+      width: 140,
+      height: 60,
     },
     {
       src: "/triti.png",
       alt: "Bloomvest",
+      width: 140,
+      height: 60,
     },
     {
       src: "/twin.png",
       alt: "Bloomvest",
+      width: 140,
+      height: 60,
     },
     {
       src: "/valpem.png",
       alt: "Bloomvest",
+      width: 140,
+      height: 60,
     },
   ];
 

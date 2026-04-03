@@ -137,7 +137,7 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
 
         {/* Bottom CTA for a modern touch */}
         {/* Gradient Border Wrapper */}
-        <div className="mt-20 p-[1px] rounded-[32px] bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] ">
+        <div className="mt-20 p-px rounded-[32px] bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] ">
           {/* Inner Glass Container */}
           <div className="p-8 rounded-[31px] bg-white backdrop-blur-2xl flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden">
             {/* Subtle internal glow */}

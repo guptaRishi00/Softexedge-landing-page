@@ -4,7 +4,6 @@ import { useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Brands from "@/components/Brands";
 import ContactFormPopup from "@/components/ContactFormPopup";
-import FAQSection from "@/components/FAQSection";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -16,6 +15,7 @@ import ScheduleCallSection from "@/components/ScheduleCallSection";
 const LogoCarousel = dynamic(() => import("@/components/LogoCarousel"), { ssr: false });
 const CardCarousel = dynamic(() => import("@/components/CardCarousel"), { ssr: false });
 const TestimonialSection = dynamic(() => import("@/components/TestimonialSection"), { ssr: false });
+const FAQSection = dynamic(() => import("@/components/FAQSection"), { ssr: false });
 
 export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);

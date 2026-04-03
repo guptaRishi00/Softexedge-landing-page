@@ -62,7 +62,7 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
   ];
 
   const gradientText =
-    "bg-clip-text text-transparent bg-gradient-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
+    "bg-clip-text text-transparent bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";
 
   // --- State & Refs ---
   const [itemsToShow, setItemsToShow] = useState(1);
@@ -176,7 +176,7 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
                   onClick={() => setCurrentIndex(index + itemsToShow)}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
                     normalizedIndex === index
-                      ? "w-8 sm:w-12 bg-gradient-to-r from-[#3445E7] to-[#07D6F3]"
+                      ? "w-8 sm:w-12 bg-linear-to-r from-[#3445E7] to-[#07D6F3]"
                       : "w-2 sm:w-3 bg-gray-200 hover:bg-gray-300"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}

@@ -355,10 +355,10 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           return (
             <li
               className={cx(
-                "flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]",
+                "flex-none text-(length:--logoloop-logoHeight) leading-none",
                 isVertical
-                  ? "mb-[var(--logoloop-gap)]"
-                  : "mr-[var(--logoloop-gap)]",
+                  ? "mb-(--logoloop-gap)"
+                  : "mr-(--logoloop-gap)",
                 scaleOnHover && "overflow-visible group/item",
               )}
               key={key}
@@ -377,7 +377,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
               "inline-flex items-center",
               "motion-reduce:transition-none",
               scaleOnHover &&
-                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
+                "transition-transform duration-300 ease-in-out group-hover/item:scale-120",
             )}
             aria-hidden={!!(item as any).href && !(item as any).ariaLabel}
           >
@@ -386,12 +386,12 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         ) : (
           <Image
             className={cx(
-              "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
+              "h-(--logoloop-logoHeight) w-auto block object-contain",
               "[-webkit-user-drag:none] pointer-events-none",
               "[image-rendering:-webkit-optimize-contrast]",
               "motion-reduce:transition-none",
               scaleOnHover &&
-                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
+                "transition-transform duration-300 ease-in-out group-hover/item:scale-120",
             )}
             src={(item as any).src}
             sizes={(item as any).sizes || "(max-width: 768px) 100px, 200px"}
@@ -429,10 +429,10 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         return (
           <li
             className={cx(
-              "flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]",
+              "flex-none text-(length:--logoloop-logoHeight) leading-none",
               isVertical
-                ? "mb-[var(--logoloop-gap)]"
-                : "mr-[var(--logoloop-gap)]",
+                ? "mb-(--logoloop-gap)"
+                : "mr-(--logoloop-gap)",
               scaleOnHover && "overflow-visible group/item",
             )}
             key={key}

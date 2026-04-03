@@ -46,13 +46,13 @@ const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
     >
       {/* Structural Background Lines - Hidden on very small screens to avoid clutter */}
       <div className="absolute inset-0 pointer-events-none opacity-40 select-none">
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-300" />
-        <div className="absolute top-[30%] left-0 w-[10%] sm:w-[20%] h-[1px] bg-gray-300" />
-        <div className="absolute top-[70%] left-0 w-[10%] sm:w-[20%] h-[1px] bg-gray-300" />
-        <div className="absolute top-[30%] right-0 w-[15%] sm:w-[25%] h-[1px] bg-gray-300" />
-        <div className="absolute top-[70%] right-0 w-[15%] sm:w-[25%] h-[1px] bg-gray-300" />
-        <div className="hidden sm:block absolute top-[30%] left-[20%] w-[1px] h-[40%] bg-gray-300" />
-        <div className="hidden sm:block absolute top-[30%] right-[25%] w-[1px] h-[40%] bg-gray-300" />
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gray-300" />
+        <div className="absolute top-[30%] left-0 w-[10%] sm:w-[20%] h-px bg-gray-300" />
+        <div className="absolute top-[70%] left-0 w-[10%] sm:w-[20%] h-px bg-gray-300" />
+        <div className="absolute top-[30%] right-0 w-[15%] sm:w-[25%] h-px bg-gray-300" />
+        <div className="absolute top-[70%] right-0 w-[15%] sm:w-[25%] h-px bg-gray-300" />
+        <div className="hidden sm:block absolute top-[30%] left-[20%] w-px h-[40%] bg-gray-300" />
+        <div className="hidden sm:block absolute top-[30%] right-[25%] w-px h-[40%] bg-gray-300" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -96,7 +96,7 @@ const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
           <div className="col-span-12 lg:col-span-6">
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="relative aspect-square sm:aspect-video min-h-[320px] sm:min-h-0 rounded-[30px] sm:rounded-[40px] overflow-hidden border-[8px] sm:border-[12px] border-white shadow-2xl shadow-blue-900/10 group bg-gray-100"
+              className="relative aspect-square sm:aspect-video min-h-[320px] sm:min-h-0 rounded-[30px] sm:rounded-[40px] overflow-hidden border-8 sm:border-12 border-white shadow-2xl shadow-blue-900/10 group bg-gray-100"
             >
               <Image
                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&auto=format&fit=crop&q=80"

@@ -161,7 +161,7 @@ const HeroSection = () => {
 
           {/* --- PARTNERS LOGO SECTION --- */}
           <div className="space-y-5">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+            <p className="text-[11px] font-bold text-gray-600 uppercase tracking-widest">
               Trusted Platform Partners
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-6 transition-all duration-500">
@@ -172,6 +172,7 @@ const HeroSection = () => {
                 height={20}
                 className="h-5 w-auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"
@@ -180,6 +181,7 @@ const HeroSection = () => {
                 height={16}
                 className="h-4 w-auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
@@ -188,6 +190,7 @@ const HeroSection = () => {
                 height={24}
                 className="h-6 w-auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/WordPress_Logotype_Alternative.svg/500px-WordPress_Logotype_Alternative.svg.png"
@@ -196,6 +199,7 @@ const HeroSection = () => {
                 height={28}
                 className="h-7 w-auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg"
@@ -204,6 +208,7 @@ const HeroSection = () => {
                 height={16}
                 className="h-4 w-auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <Image
                 src="https://imgs.search.brave.com/3I_6IBC_d0AMoHikTIGgtbzy0OZn1CbUmP5f0UrvTD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWRjb2xvci5vcmcv/d3AtY29udGVudC91/cGxvYWRzLzIwMjIv/MTAvYW1hem9uLWFk/cy1sb2dvLTMwMHgx/MDcucG5n"
@@ -212,6 +217,7 @@ const HeroSection = () => {
                 height={40}
                 className="h-10 w-auto"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
           </div>
@@ -278,7 +284,7 @@ const HeroSection = () => {
                       <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-none">
                         Your Details<span className="text-[#2F85EA]">.</span>
                       </h2>
-                      <p className="text-sm font-medium text-gray-500">
+                      <p className="text-sm font-medium text-gray-600">
                         Booking for {scheduledDateTime.date} at {scheduledDateTime.time}
                       </p>
                     </div>

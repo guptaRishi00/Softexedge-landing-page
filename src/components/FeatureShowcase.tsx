@@ -81,7 +81,7 @@ const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
             {features.map((feature) => (
               <div key={feature.id} className="space-y-4 group">
                 {/* Icon Container - Small & Minimal */}
-                <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center transition-all duration-300 bg-gradient-to-br from-[#3445E7] to-[#07D6F3] text-white">
+                <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center transition-all duration-300 bg-linear-to-br from-[#3445E7] to-[#07D6F3] text-white">
                   {feature.icon}
                 </div>
 

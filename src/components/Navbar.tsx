@@ -40,7 +40,7 @@ const Navbar = () => {
                 .getElementById("hero")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="transition-opacity cursor-pointer"
+            className="transition-opacity cursor-pointer p-2 inline-block -m-2"
           >
             <Image
               src="/logo.svg"

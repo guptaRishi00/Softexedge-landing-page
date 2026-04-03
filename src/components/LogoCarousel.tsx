@@ -135,13 +135,14 @@ const LogoCarousel = () => {
               key={index}
               className="flex w-[220px] md:w-[280px] items-center justify-center px-1.5 md:px-2.5"
             >
-              <div className="relative w-full aspect-[10/19] overflow-hidden rounded-[10px] md:rounded-[12px] border border-gray-100 shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-700 hover:scale-[1.03] hover:shadow-blue-500/10">
+              <div className="relative w-full aspect-10/19 overflow-hidden rounded-[10px] md:rounded-[12px] border border-gray-100 shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-700 hover:scale-[1.03] hover:shadow-blue-500/10">
                 <Image
                   src={`/${src}`}
                   alt={`Project Screenshot ${index}`}
                   fill
                   draggable={false}
                   priority={index < 6}
+                  sizes="(max-width: 768px) 220px, 280px"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </div>

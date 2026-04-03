@@ -43,7 +43,10 @@ export const metadata: Metadata = {
   title: "SoftEXedge",
   description: "Crafting Digital Experiences",
   icons: {
-    icon: "/icon.png",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+    ],
   },
 };
 
@@ -57,7 +60,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Tag Manager - Main Script */}
-        <Script id="gtm-script" strategy="afterInteractive">
+        <Script id="gtm-script" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -68,9 +71,9 @@ export default function RootLayout({
         {/* Google Analytics - gtag.js */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-7RQYPB8NT6"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -80,7 +83,7 @@ export default function RootLayout({
         </Script>
 
         {/* Meta Pixel - Restricted to production domain */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             if (window.location.hostname === 'landing.softexedge.in') {
               !function(f,b,e,v,n,t,s)
