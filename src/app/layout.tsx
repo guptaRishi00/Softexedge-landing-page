@@ -43,10 +43,9 @@ export const metadata: Metadata = {
   title: "SoftEXedge",
   description: "Crafting Digital Experiences",
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", sizes: "32x32", type: "image/png" },
-    ],
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
