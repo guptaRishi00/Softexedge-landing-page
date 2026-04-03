@@ -65,6 +65,20 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-N6G4FRSN');`}
         </Script>
 
+        {/* Google Analytics - gtag.js */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-7RQYPB8NT6"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7RQYPB8NT6');
+          `}
+        </Script>
+
         {/* Meta Pixel - Restricted to production domain */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`

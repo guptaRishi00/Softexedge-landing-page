@@ -21,7 +21,7 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
     const d = new Date();
     d.setDate(d.getDate() + i);
     return d;
-  }).filter(d => d.getDay() !== 0 && d.getDay() !== 6).slice(0, 20).map(d => {
+  }).filter(d => d.getDay() !== 0).slice(0, 20).map(d => {
     const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return {
