@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <Navbar onOpenPopup={openPopup} />
+      <Navbar />
 
       <main>
         {/* Wrap HeroSection in Suspense because it uses useSearchParams */}
