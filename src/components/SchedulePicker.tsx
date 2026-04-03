@@ -140,7 +140,7 @@ export default function SchedulePicker({ onSelect, selectedDate, selectedTime }:
               type="button"
               onClick={() => { setSelectedPeriod(period); onSelect(selectedDate, ""); }}
               className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2 text-[12px] sm:text-[14px] font-medium rounded-full transition-all cursor-pointer ${
-                selectedPeriod === period ? "bg-white shadow-sm text-gray-900" : "text-gray-500 hover:text-gray-700"
+                selectedPeriod === period ? "bg-white shadow-sm text-gray-900" : "text-gray-600 hover:text-gray-700"
               }`}
             >
               {period === "Morning" && <Sunrise size={14} className="hidden sm:block" />}

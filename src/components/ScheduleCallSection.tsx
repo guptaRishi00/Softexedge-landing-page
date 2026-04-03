@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
 
@@ -9,9 +10,15 @@ const AvatarGroup = ({ avatars }: { avatars: string[] }) => (
     {avatars.map((src, i) => (
       <div
         key={i}
-        className="w-7 h-7 rounded-full border-2 border-white overflow-hidden bg-gray-100"
+        className="w-7 h-7 rounded-full border-2 border-white overflow-hidden bg-gray-100 relative"
       >
-        <img src={src} className="w-full h-full object-cover" alt="User" />
+        <Image
+          src={src}
+          width={28}
+          height={28}
+          className="w-full h-full object-cover"
+          alt="User"
+        />
       </div>
     ))}
   </div>
@@ -91,8 +98,9 @@ const ScheduleCallSection = ({ onOpenPopup }: ScheduleCallSectionProps) => {
               whileHover={{ scale: 1.01 }}
               className="relative aspect-square sm:aspect-video min-h-[320px] sm:min-h-0 rounded-[30px] sm:rounded-[40px] overflow-hidden border-[8px] sm:border-[12px] border-white shadow-2xl shadow-blue-900/10 group bg-gray-100"
             >
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&auto=format&fit=crop&q=80"
+                fill
                 className="w-full h-full object-[center_30%] object-cover transition-transform duration-700 group-hover:scale-105"
                 alt="Meeting Interface"
               />

@@ -90,7 +90,7 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
 
                     <h3
                       className={`text-xl lg:text-2xl font-bold transition-all duration-300 ${
-                        isOpen ? "text-gray-900" : "text-gray-500"
+                        isOpen ? "text-gray-900" : "text-gray-600"
                       }`}
                     >
                       {faq.question}

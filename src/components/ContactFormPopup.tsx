@@ -177,7 +177,7 @@ const ContactFormPopup = ({ isOpen, onClose }: ContactFormPopupProps) => {
                     <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-none">
                       Your Details<span className="text-[#2F85EA]">.</span>
                     </h2>
-                    <p className="text-sm font-medium text-gray-500">
+                    <p className="text-sm font-medium text-gray-600">
                       Booking for {scheduledDateTime.date} at {scheduledDateTime.time}
                     </p>
                   </div>

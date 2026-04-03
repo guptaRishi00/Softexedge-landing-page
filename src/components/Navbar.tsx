@@ -1,15 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { CalendarDays } from "lucide-react";
 
-interface NavbarProps {
-  onOpenPopup: () => void;
-}
-
-const Navbar = ({ onOpenPopup }: NavbarProps) => {
+const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,12 +11,6 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const buttonBase =
-    "px-6 py-2.5 rounded-full text-[14px] font-medium border cursor-pointer";
-  const buttonIdle = "text-gray-700 border-gray-300 bg-transparent";
-  const buttonHover =
-    " hover:text-white hover:border-white hover:bg-gradient-to-r hover:from-[#3445E7] hover:via-[#2F85EA] hover:to-[#07D6F3]";
 
   return (
     <div className="top-0 w-full z-50">
@@ -63,7 +51,6 @@ const Navbar = ({ onOpenPopup }: NavbarProps) => {
               priority
             />
           </a>
-
         </div>
       </nav>
     </div>

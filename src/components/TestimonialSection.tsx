@@ -116,7 +116,7 @@ export default function TestimonialSection() {
           </span>{" "}
           Happy Clients
         </h2>
-        <p className="text-gray-500 font-medium mb-16 text-lg">
+        <p className="text-gray-600 font-medium mb-16 text-lg">
           Trusted by businesses worldwide for high-performance web development
         </p>
 
@@ -141,10 +141,12 @@ export default function TestimonialSection() {
 
               <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-50">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full overflow-hidden bg-gray-100 ring-2 ring-gray-50">
-                    <img
+                  <div className="w-11 h-11 rounded-full overflow-hidden bg-gray-100 ring-2 ring-gray-50 relative">
+                    <Image
                       src={item.image}
                       alt={item.author}
+                      width={44}
+                      height={44}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -152,7 +154,7 @@ export default function TestimonialSection() {
                     <h4 className="text-sm font-bold text-gray-900 leading-tight">
                       {item.author}
                     </h4>
-                    <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mt-0.5">
+                    <p className="text-[11px] font-medium text-gray-600 uppercase tracking-wider mt-0.5">
                       {item.role}
                     </p>
                   </div>

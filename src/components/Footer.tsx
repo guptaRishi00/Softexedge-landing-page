@@ -165,10 +165,10 @@ export default function Footer() {
                 </div>
 
                 <div className="space-y-6 md:space-y-8 col-span-2 md:col-span-1">
-                  <h4 className="text-white text-lg md:text-xl font-bold">
+                  <h3 className="text-white text-lg md:text-xl font-bold">
                     Quick Links
-                  </h4>
-                  <ul className="space-y-4 md:space-y-5 text-zinc-400 text-base md:text-lg">
+                  </h3>
+                  <ul className="space-y-4 md:space-y-5 text-zinc-300 text-base md:text-lg">
                     <li>
                       <Link
                         href="#"

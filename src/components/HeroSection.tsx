@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
 import { MoveRight, SendHorizontal, Globe, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -164,35 +165,53 @@ const HeroSection = () => {
               Trusted Platform Partners
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-6 transition-all duration-500">
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Shopify_logo.svg"
                 alt="Shopify"
+                width={100}
+                height={20}
                 className="h-5 w-auto"
+                priority
               />
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"
                 alt="Meta"
+                width={80}
+                height={16}
                 className="h-4 w-auto"
+                priority
               />
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
                 alt="Google"
+                width={80}
+                height={24}
                 className="h-6 w-auto"
+                priority
               />
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/WordPress_Logotype_Alternative.svg/500px-WordPress_Logotype_Alternative.svg.png"
                 alt="WordPress"
+                width={120}
+                height={28}
                 className="h-7 w-auto"
+                priority
               />
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/7/76/Wix.com_website_logo.svg"
                 alt="Wix.com"
+                width={60}
+                height={16}
                 className="h-4 w-auto"
+                priority
               />
-              <img
+              <Image
                 src="https://imgs.search.brave.com/3I_6IBC_d0AMoHikTIGgtbzy0OZn1CbUmP5f0UrvTD8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWRjb2xvci5vcmcv/d3AtY29udGVudC91/cGxvYWRzLzIwMjIv/MTAvYW1hem9uLWFk/cy1sb2dvLTMwMHgx/MDcucG5n"
                 alt="Amazon Ads"
+                width={100}
+                height={40}
                 className="h-10 w-auto"
+                priority
               />
             </div>
           </div>

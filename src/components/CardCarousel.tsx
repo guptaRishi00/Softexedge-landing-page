@@ -160,7 +160,7 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
               <span className={gradientText}>What</span> We Build
             </h2>
-            <p className="text-gray-500 max-w-sm text-lg leading-relaxed">
+            <p className="text-gray-600 max-w-sm text-lg leading-relaxed">
               High-performance websites engineered for growth.
             </p>
           </div>

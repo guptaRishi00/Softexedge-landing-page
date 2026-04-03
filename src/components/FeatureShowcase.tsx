@@ -42,9 +42,9 @@ const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
         <div className="md:col-span-4 bg-[#04034C] rounded-3xl p-8 flex flex-col items-start text-left space-y-6 relative overflow-hidden group min-h-[280px] justify-center gap-10 hover:shadow-2xl hover:shadow-blue-900/20">
           {/* Decorative gradient line */}
 
-          <h3 className="text-2xl font-semibold text-white leading-snug relative z-10">
+          <p className="text-2xl font-semibold text-white leading-snug relative z-10">
             Ready to launch <br /> your next website?
-          </h3>
+          </p>
 
           <button
             onClick={onOpenPopup}
