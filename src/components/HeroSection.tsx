@@ -29,35 +29,7 @@ const HeroSection = () => {
     const first_name = nameParts[0] || "";
     const last_name = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
-    const getCookie = (name: string) => {
-      if (typeof document === "undefined") return undefined;
-      const match = document.cookie.match(
-        new RegExp("(^| )" + name + "=([^;]+)"),
-      );
-      return match ? decodeURIComponent(match[2]) : undefined;
-    };
-
-    const fbpCookie = getCookie("_fbp");
-    const fbcCookie = getCookie("_fbc");
-    const fbclid = searchParams.get("fbclid");
-
-    const fbc =
-      fbcCookie || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
-    const fbp = fbpCookie || undefined;
-
     const eventId = "lead_hero_" + Date.now();
-
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq(
-        "track",
-        "Lead",
-        {
-          content_category: "Hero Section Form",
-          content_name: service || "Not Selected",
-        },
-        { eventID: eventId },
-      );
-    }
 
     const payload = {
       formType: "Hero Section Contact Form",
@@ -77,7 +49,8 @@ const HeroSection = () => {
     };
 
     try {
-      await fetch(
+      // Fire and forget - Google Apps Script is slow and mode: "no-cors" means we can't reliably read the response anyway
+      fetch(
         "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
         {
           method: "POST",
@@ -87,24 +60,9 @@ const HeroSection = () => {
             "Content-Type": "application/json",
           },
         },
-      );
+      ).catch(err => console.error("GAS Submission Background Error:", err));
 
-      await fetch("/api/meta-event", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          eventId,
-          first_name,
-          last_name,
-          email,
-          phone: phoneNumber,
-          fbp,
-          fbc,
-          source: "Hero Section Form",
-          service: service || "Not Selected",
-        }),
-      });
-
+      // Immediate UI transition
       (e.target as HTMLFormElement).reset();
       setService("");
       setScheduledDateTime({ date: "", time: "" });
