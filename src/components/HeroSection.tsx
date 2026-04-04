@@ -49,28 +49,33 @@ const HeroSection = () => {
     };
 
     try {
-      // Fire and forget - Google Apps Script is slow and mode: "no-cors" means we can't reliably read the response anyway
-      fetch(
-        "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      // 1. Send data to our own Next.js server route (No CORS issues!)
+      const res = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      ).catch(err => console.error("GAS Submission Background Error:", err));
+        body: JSON.stringify(payload),
+      });
 
-      // Immediate UI transition
+      const data = await res.json();
+
+      if (data.status === "error") {
+        console.error("Google Apps Script reported an error:", data.message);
+        alert("There was an issue processing your request on the server.");
+        setIsSubmitting(false);
+        return; // Stop execution
+      }
+
+      // 2. Immediate UI transition on Success
       (e.target as HTMLFormElement).reset();
       setService("");
       setScheduledDateTime({ date: "", time: "" });
       setStep(1);
       router.push("/thank-you");
     } catch (error) {
-      console.error("Submission error:", error);
-      alert("There was an error sending your message. Please try again.");
+      console.error("Local Submission error:", error);
+      alert("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }

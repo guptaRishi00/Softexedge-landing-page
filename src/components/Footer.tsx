@@ -20,24 +20,27 @@ export default function Footer() {
     };
 
     try {
-      // Using your provided Google Apps Script Web App URL
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbzSj-Aq7HibWvjSDPIPgCN8yFKJOegEsbRAzF3R5xwtgs1rZj9x-8BUFTwH-XPdSfFy4Q/exec",
-        {
-          method: "POST",
-          mode: "no-cors", // Required for Google Apps Script
-          body: JSON.stringify(payload),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (data.status === "error") {
+        console.error("Newsletter subscription error:", data.message);
+        alert("There was an error subscribing. Please try again.");
+        return;
+      }
 
       alert("Successfully subscribed to our newsletter!");
       setEmail("");
     } catch (error) {
       console.error("Subscription error:", error);
-      alert("There was an error subscribing. Please try again.");
+      alert("Network error. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
