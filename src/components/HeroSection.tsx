@@ -14,7 +14,10 @@ const HeroSection = () => {
   const [step, setStep] = useState(1);
   const [service, setService] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [scheduledDateTime, setScheduledDateTime] = useState({ date: "", time: "" });
+  const [scheduledDateTime, setScheduledDateTime] = useState({
+    date: "",
+    time: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -107,10 +110,6 @@ const HeroSection = () => {
               <span className="inline-block bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent pr-2">
                 within 7 days
               </span>{" "}
-              at less than{" "}
-              <span className="inline-block bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent pr-2">
-                35K
-              </span>
             </h1>
           </div>
 
@@ -209,14 +208,20 @@ const HeroSection = () => {
           <div className="relative p-[1.5px] rounded-[32px] bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]">
             <div className="relative bg-white rounded-[30.5px] p-8 lg:p-10 min-h-[500px] flex flex-col justify-center overflow-hidden">
               <AnimatePresence mode="wait">
-
                 {/* STEP 1: SCHEDULING UI */}
                 {step === 1 && (
-                  <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+                  <motion.div
+                    key="step1"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                  >
                     <SchedulePicker
                       selectedDate={scheduledDateTime.date}
                       selectedTime={scheduledDateTime.time}
-                      onSelect={(date, time) => setScheduledDateTime({ date, time })}
+                      onSelect={(date, time) =>
+                        setScheduledDateTime({ date, time })
+                      }
                     />
                     <div className="flex flex-col sm:flex-row items-center justify-between mt-8 pt-6 border-t border-gray-100 gap-4">
                       <div className="flex items-center gap-2 text-[14px] text-gray-600 font-medium w-full sm:w-auto">
@@ -225,11 +230,14 @@ const HeroSection = () => {
                       <button
                         type="button"
                         onClick={() => setStep(2)}
-                        disabled={!scheduledDateTime.date || !scheduledDateTime.time}
-                        className={`w-full sm:w-auto px-8 py-3 rounded-full text-[15px] font-bold transition-all cursor-pointer active:scale-95 ${scheduledDateTime.date && scheduledDateTime.time
-                          ? "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] text-white border border-white hover:brightness-110"
-                          : "bg-transparent border border-gray-300 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
-                          }`}
+                        disabled={
+                          !scheduledDateTime.date || !scheduledDateTime.time
+                        }
+                        className={`w-full sm:w-auto px-8 py-3 rounded-full text-[15px] font-bold transition-all cursor-pointer active:scale-95 ${
+                          scheduledDateTime.date && scheduledDateTime.time
+                            ? "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] text-white border border-white hover:brightness-110"
+                            : "bg-transparent border border-gray-300 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                        }`}
                       >
                         Confirm details
                       </button>
@@ -239,16 +247,26 @@ const HeroSection = () => {
 
                 {/* STEP 2: USER DETAILS FORM */}
                 {step === 2 && (
-                  <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                  <motion.div
+                    key="step2"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                  >
                     <div className="mb-8 flex flex-col gap-2">
-                      <button type="button" onClick={() => setStep(1)} className="flex items-center gap-1 text-gray-400 hover:text-[#2F85EA] text-sm font-bold transition-colors w-fit mb-2 cursor-pointer">
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="flex items-center gap-1 text-gray-400 hover:text-[#2F85EA] text-sm font-bold transition-colors w-fit mb-2 cursor-pointer"
+                      >
                         <ArrowLeft size={14} /> Back to Schedule
                       </button>
                       <h2 className="text-3xl font-black text-gray-900 tracking-tight leading-none">
                         Your Details<span className="text-[#2F85EA]">.</span>
                       </h2>
                       <p className="text-sm font-medium text-gray-600">
-                        Booking for {scheduledDateTime.date} at {scheduledDateTime.time}
+                        Booking for {scheduledDateTime.date} at{" "}
+                        {scheduledDateTime.time}
                       </p>
                     </div>
 
@@ -322,10 +340,11 @@ const HeroSection = () => {
 
                         <label
                           className={`absolute left-0 pointer-events-none transition-all duration-300 
-                          ${service
+                          ${
+                            service
                               ? "-top-5 text-[11px] text-[#2F85EA] font-bold"
                               : "top-2.5 text-gray-600 text-[15px] group-focus-within:-top-5 group-focus-within:text-[11px] group-focus-within:text-[#2F85EA] group-focus-within:font-bold"
-                            }`}
+                          }`}
                         >
                           How can we help?
                         </label>
@@ -352,7 +371,6 @@ const HeroSection = () => {
                     </form>
                   </motion.div>
                 )}
-
               </AnimatePresence>
             </div>
           </div>
