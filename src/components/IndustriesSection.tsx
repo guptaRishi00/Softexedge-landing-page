@@ -28,6 +28,7 @@ const industries = [
   { name: "Office Furniture", color: "text-amber-700" },
   { name: "Baby & Toddler", color: "text-sky-400" },
   { name: "Coffee & Beverages", color: "text-orange-900" },
+  { name: "Saas", color: "text-red-500" },
 ];
 
 const SparkleIcon = ({ className }: any) => (
@@ -77,7 +78,7 @@ interface IndustriesSectionProps {
 const IndustriesSection = ({ onOpenPopup }: IndustriesSectionProps) => {
   const row1 = industries.slice(0, 8);
   const row2 = industries.slice(8, 16);
-  const row3 = industries.slice(16, 24);
+  const row3 = industries.slice(16, 25);
 
   const brandGradient =
     "bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3]";

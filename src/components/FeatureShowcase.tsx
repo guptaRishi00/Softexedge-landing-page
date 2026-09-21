@@ -43,7 +43,7 @@ const FeatureShowcase = ({ onOpenPopup }: FeatureShowcaseProps) => {
           {/* Decorative gradient line */}
 
           <p className="text-2xl font-semibold text-white leading-snug relative z-10">
-            Ready to launch <br /> your next website?
+            Ready to launch <br /> your next Software?
           </p>
 
           <button

@@ -14,28 +14,28 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
   const faqs = [
     {
       id: 1,
-      question: "How can you deliver a professional website in just 7 days?",
+      question: "How can you deliver a professional software in just 7 days?",
       answer:
         "We use an optimized development workflow and high-performance frameworks that allow us to skip the 'bloat' and focus immediately on your branding and content. For Shopify, we utilize proven conversion-optimized structures to get you selling as fast as possible.",
     },
     {
       id: 2,
-      question: "Should I choose Shopify or a Custom Website for my business?",
+      question: "Should I choose Shopify or a Custom Software for my business?",
       answer:
         "If you're focused on E-commerce and want easy inventory management, Shopify is the gold standard. For service-based businesses or unique web apps requiring maximum speed and specific features, a custom stack (like Next.js or WordPress) is often better. We’ll help you pick the right one.",
     },
 
     {
       id: 4,
-      question: "Will my website be mobile-friendly and SEO-optimized?",
+      question: "Will my software be mobile-friendly and SEO-optimized?",
       answer:
-        "Every site we build is 'Mobile-First.' We ensure fast loading speeds, clean code for Google indexing, and responsive layouts that look perfect on iPhones, tablets, and desktops alike.",
+        "Every app we build is 'Mobile-First.' We ensure fast loading speeds, clean code for Google indexing, and responsive layouts that look perfect on iPhones, tablets, and desktops alike.",
     },
     {
       id: 5,
-      question: "Do you provide support after the website goes live?",
+      question: "Do you provide support after the software goes live?",
       answer:
-        "Yes. We provide a walkthrough to show you how to manage your new site, plus 30 days of post-launch technical support to ensure everything is running smoothly as you start receiving traffic.",
+        "Yes. We provide a walkthrough to show you how to manage your new software, plus 30 days of post-launch technical support to ensure everything is running smoothly as you start receiving traffic.",
     },
   ];
 

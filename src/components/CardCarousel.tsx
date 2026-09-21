@@ -161,7 +161,7 @@ const CardCarousel = ({ onOpenPopup }: CardCarouselProps) => {
               <span className={gradientText}>What</span> We Build
             </h2>
             <p className="text-gray-600 max-w-sm text-lg leading-relaxed">
-              High-performance websites engineered for growth.
+              High-performance Softwares engineered for growth.
             </p>
           </div>
 
