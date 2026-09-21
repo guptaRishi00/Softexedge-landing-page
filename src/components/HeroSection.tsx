@@ -108,7 +108,7 @@ const HeroSection = () => {
             <h1 className="text-4xl md:text-6xl lg:text-[50px] leading-[1.1] font-extrabold text-gray-900 tracking-tighter">
               Get a professional Software <br className="hidden md:block" />{" "}
               <span className="inline-block bg-linear-to-r from-[#3445E7] via-[#2F85EA] to-[#07D6F3] bg-clip-text text-transparent pr-2">
-                within 7 days
+                within 30 days
               </span>{" "}
             </h1>
           </div>

@@ -14,7 +14,7 @@ const FAQSection = ({ onOpenPopup }: FAQSectionProps) => {
   const faqs = [
     {
       id: 1,
-      question: "How can you deliver a professional software in just 7 days?",
+      question: "How can you deliver a professional software in just 30 days?",
       answer:
         "We use an optimized development workflow and high-performance frameworks that allow us to skip the 'bloat' and focus immediately on your branding and content. For Shopify, we utilize proven conversion-optimized structures to get you selling as fast as possible.",
     },
