@@ -12,10 +12,19 @@ import Navbar from "@/components/Navbar";
 import ScheduleCallSection from "@/components/ScheduleCallSection";
 
 // Dynamic imports for heavy components
-const LogoCarousel = dynamic(() => import("@/components/LogoCarousel"), { ssr: false });
-const CardCarousel = dynamic(() => import("@/components/CardCarousel"), { ssr: false });
-const TestimonialSection = dynamic(() => import("@/components/TestimonialSection"), { ssr: false });
-const FAQSection = dynamic(() => import("@/components/FAQSection"), { ssr: false });
+const LogoCarousel = dynamic(() => import("@/components/LogoCarousel"), {
+  ssr: false,
+});
+const CardCarousel = dynamic(() => import("@/components/CardCarousel"), {
+  ssr: false,
+});
+const TestimonialSection = dynamic(
+  () => import("@/components/TestimonialSection"),
+  { ssr: false },
+);
+const FAQSection = dynamic(() => import("@/components/FAQSection"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -41,7 +50,7 @@ export default function Home() {
         <FAQSection onOpenPopup={openPopup} />
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
 
       {/* Wrap ContactFormPopup in Suspense because it uses useSearchParams */}
       <Suspense fallback={null}>
